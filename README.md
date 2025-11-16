@@ -1,5 +1,7 @@
 # 🚀 KHANOON.nvim
 
+<img width="1894" height="993" alt="khanoon_nvim_img1" src="https://github.com/user-attachments/assets/f5824cb0-66cf-4419-b7e0-5d776b64f110" />
+
 > A modern, modular Neovim configuration optimized for Windows with full LSP support and beautiful UI.
 
 ![Neovim](https://img.shields.io/badge/Neovim-0.9+-green.svg)
@@ -30,12 +32,13 @@ Before installing KHANOON.nvim, ensure you have the following installed:
 - **Git**
 - **Node.js** >= 16.x (for LSP servers)
 - **Zig** (for Treesitter compilation)
+- **MinGW** (for C complier) //if you don't have Visual Studio 2022 or Newly// - [Download here](https://sourceforge.net/projects/mingw/)
 
 ### Optional but Recommended
 
 - **ripgrep** (for Telescope live_grep)
 - **fd** (for faster file search)
-- **A Nerd Font** (for icons) - [Download here](https://www.nerdfonts.com/)
+- **A Nerd Font** (for icons) //reccomment for Window Terminal usage// - [Download here](https://www.nerdfonts.com/)
 
 ## 🔧 Installation
 

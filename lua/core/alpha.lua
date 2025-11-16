@@ -22,7 +22,7 @@ dashboard.section.header.val = {
   [[  ██║  ██╗██║  ██║██║  ██║██║ ╚████║╚██████╔╝╚██████╔╝██║ ╚████║]],
   [[  ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝ ╚═════╝  ╚═════╝ ╚═╝  ╚═══╝]],
   [[                                                    ]],
-  [[  .nvim (v1.0.0)                                    ]],
+  [[  .nvim (v1.0.1)                                    ]],
   [[                                                    ]],
 }
 
@@ -35,6 +35,38 @@ dashboard.section.buttons.val = {
   dashboard.button("c", "  Configuration", ":e $MYVIMRC <CR>"),
   dashboard.button("u", "  Update plugins", ":PackerSync<CR>"),
   dashboard.button("q", "  Quit", ":qa<CR>"),
+}
+ 
+-- Add helpful hints below buttons
+dashboard.section.buttons.opts.spacing = 0
+
+-- Custom footer section for keybindings help
+local keybindings_help = {
+  type = "text",
+  val = {
+    "",
+    "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━",
+    "                         QUICK REFERENCE                            ",
+    "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━",
+    "",
+    "  <Space> Leader | <leader>w Save | <leader>q Quit | <leader>x Close Buffer",
+    "  <leader>e Explorer | <leader>f Find Files | <leader>g Grep Text",
+    "",
+    "  gd Definition | gr References | K Docs | <leader>rn Rename | <leader>ca Actions",
+    "  gcc Comment | [d/]d Diagnostics | <C-h/j/k/l> Navigate Windows",
+    "",
+    "  NvimTree: a New | d Del | r Rename | x Cut | c Copy | p Paste | H Hidden",
+    "  Git: <leader>gb Blame | <leader>gp Preview | ]c/[c Hunks",
+    "",
+    "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━",
+    "  Press '?' in NvimTree for help  |  Type ':help' for documentation",
+    "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━",
+    "",
+  },
+  opts = {
+    position = "center",
+    hl = "Comment",
+  },
 }
 
 -- Set footer
@@ -58,6 +90,18 @@ dashboard.section.footer.val = footer()
 dashboard.section.header.opts.hl = "Include"
 dashboard.section.buttons.opts.hl = "Keyword"
 dashboard.section.footer.opts.hl = "Type"
+
+-- Configure layout with keybindings help
+dashboard.config.layout = {
+  { type = "padding", val = 2 },
+  dashboard.section.header,
+  { type = "padding", val = 2 },
+  dashboard.section.buttons,
+  { type = "padding", val = 1 },
+  keybindings_help,
+  { type = "padding", val = 1 },
+  dashboard.section.footer,
+}
 
 dashboard.opts.opts.noautocmd = true
 

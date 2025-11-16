@@ -1,0 +1,30 @@
+-- =============================================================================
+-- Nvim-Tree Configuration
+-- =============================================================================
+-- Note: The actual setup is in plugins.lua for lazy-loading
+-- This file provides reference for nvim-tree keymaps
+
+-- Nvim-tree is configured in plugins.lua with lazy-loading
+-- Main keymap: <leader>e to toggle
+
+-- Built-in keymaps when nvim-tree is open:
+-- a     - Create new file/folder (ends with / for folder)
+-- d     - Delete file/folder
+-- r     - Rename file/folder
+-- x     - Cut file/folder
+-- c     - Copy file/folder
+-- p     - Paste file/folder
+-- y     - Copy name
+-- Y     - Copy relative path
+-- gy    - Copy absolute path
+-- R     - Refresh
+-- H     - Toggle hidden files
+-- I     - Toggle ignored files
+-- E     - Expand all folders
+-- W     - Collapse all folders
+-- q     - Close nvim-tree
+-- <CR>  - Open file or folder
+-- <Tab> - Preview file
+-- <C-v> - Open in vertical split
+-- <C-x> - Open in horizontal split
+-- <C-t> - Open in new tab

@@ -1,0 +1,58 @@
+# =============================================================================
+# Neovim Configuration .gitignore
+# =============================================================================
+
+# Packer compiled file
+plugin/packer_compiled.lua
+
+# Packer plugin directory (ไม่ต้อง commit plugins ที่ติดตั้ง)
+pack/
+site/
+
+# Plugin directories
+plugged/
+.packer/
+
+# Neovim data directories
+nvim-data/
+shada/
+swap/
+undo/
+backup/
+
+# LSP servers installed by Mason
+mason/
+
+# Session files
+*.vim
+*.session
+
+# Temporary files
+*.swp
+*.swo
+*.swn
+*~
+.DS_Store
+Thumbs.db
+
+# Log files
+*.log
+
+# Neovim cache
+cache/
+
+# LuaLS cache
+.luarc.json
+
+# Node modules (ถ้ามี)
+node_modules/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# OS specific
+.DS_Store
+Thumbs.db
+desktop.ini

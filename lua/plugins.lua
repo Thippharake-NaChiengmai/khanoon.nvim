@@ -192,7 +192,83 @@ require("lazy").setup({
     event = { "BufReadPost", "BufNewFile" },
     dependencies = {
       "nvim-treesitter/nvim-treesitter-textobjects",
+      "HiPhish/rainbow-delimiters.nvim",
     },
+  },
+  
+  -- Rainbow brackets
+  {
+    "HiPhish/rainbow-delimiters.nvim",
+    event = { "BufReadPost", "BufNewFile" },
+    config = function()
+      require('rainbow-delimiters.setup').setup({
+        strategy = {
+          [''] = require('rainbow-delimiters').strategy['global'],
+        },
+        query = {
+          [''] = 'rainbow-delimiters',
+        },
+        highlight = {
+          'RainbowDelimiterRed',
+          'RainbowDelimiterYellow',
+          'RainbowDelimiterBlue',
+          'RainbowDelimiterOrange',
+          'RainbowDelimiterGreen',
+          'RainbowDelimiterViolet',
+          'RainbowDelimiterCyan',
+        },
+      })
+    end,
+  },
+  
+  -- Indent guides
+  {
+    "lukas-reineke/indent-blankline.nvim",
+    event = { "BufReadPost", "BufNewFile" },
+    main = "ibl",
+    config = function()
+      require("ibl").setup({
+        indent = {
+          char = "│",
+          tab_char = "│",
+        },
+        scope = { enabled = false },
+        exclude = {
+          filetypes = {
+            "help",
+            "alpha",
+            "dashboard",
+            "neo-tree",
+            "Trouble",
+            "lazy",
+            "mason",
+            "notify",
+            "toggleterm",
+            "lazyterm",
+          },
+        },
+      })
+    end,
+  },
+  
+  -- Colorizer (แสดงสีจริงของ hex colors)
+  {
+    "norcalli/nvim-colorizer.lua",
+    event = "BufReadPre",
+    config = function()
+      require('colorizer').setup({
+        '*',
+      }, {
+        RGB = true,
+        RRGGBB = true,
+        names = true,
+        RRGGBBAA = true,
+        rgb_fn = true,
+        hsl_fn = true,
+        css = true,
+        css_fn = true,
+      })
+    end,
   },
   
   -- =========================================================================
@@ -275,6 +351,61 @@ require("lazy").setup({
       "nvim-treesitter/nvim-treesitter",
       "DaikyXendo/nvim-material-icon",
     },
+  },
+  
+  -- Conform (Auto-formatting)
+  {
+    "stevearc/conform.nvim",
+    event = { "BufWritePre" },
+    cmd = { "ConformInfo" },
+    keys = {
+      {
+        "<leader>cf",
+        function()
+          require("conform").format({ async = true, lsp_fallback = true })
+        end,
+        mode = "",
+        desc = "Format buffer",
+      },
+    },
+    config = function()
+      require("conform").setup({
+        formatters_by_ft = {
+          lua = { "stylua" },
+          python = { "black" },
+          javascript = { "prettier" },
+          typescript = { "prettier" },
+          javascriptreact = { "prettier" },
+          typescriptreact = { "prettier" },
+          css = { "prettier" },
+          html = { "prettier" },
+          json = { "prettier" },
+          yaml = { "prettier" },
+          markdown = { "prettier" },
+          go = { "gofmt" },
+          rust = { "rustfmt" },
+        },
+        format_on_save = function(bufnr)
+          -- Disable with a global or buffer-local variable
+          if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
+            return
+          end
+          return { timeout_ms = 500, lsp_fallback = true }
+        end,
+      })
+      
+      -- Toggle format on save
+      vim.api.nvim_create_user_command("FormatToggle", function(args)
+        if args.bang then
+          vim.b.disable_autoformat = not vim.b.disable_autoformat
+        else
+          vim.g.disable_autoformat = not vim.g.disable_autoformat
+        end
+      end, {
+        desc = "Toggle autoformat-on-save",
+        bang = true,
+      })
+    end,
   },
   
   -- =========================================================================
@@ -427,6 +558,66 @@ require("lazy").setup({
     end,
   },
   
+  -- Flash (Better navigation)
+  {
+    "folke/flash.nvim",
+    event = "VeryLazy",
+    keys = {
+      { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
+      { "S", mode = { "n", "x", "o" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
+      { "r", mode = "o", function() require("flash").remote() end, desc = "Remote Flash" },
+      { "R", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
+    },
+    config = function()
+      require("flash").setup({
+        labels = "asdfghjklqwertyuiopzxcvbnm",
+        search = {
+          multi_window = true,
+          forward = true,
+          wrap = true,
+        },
+        jump = {
+          jumplist = true,
+          pos = "start",
+          history = false,
+          register = false,
+          nohlsearch = false,
+        },
+        label = {
+          uppercase = true,
+          rainbow = {
+            enabled = true,
+            shade = 5,
+          },
+        },
+        modes = {
+          char = {
+            enabled = true,
+            jump_labels = true,
+          },
+        },
+      })
+    end,
+  },
+  
+  -- Harpoon (Quick file navigation)
+  {
+    "ThePrimeagen/harpoon",
+    branch = "harpoon2",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    keys = {
+      { "<leader>ha", function() require("harpoon"):list():add() end, desc = "Harpoon Add File" },
+      { "<leader>hh", function() local harpoon = require("harpoon") harpoon.ui:toggle_quick_menu(harpoon:list()) end, desc = "Harpoon Menu" },
+      { "<leader>1", function() require("harpoon"):list():select(1) end, desc = "Harpoon File 1" },
+      { "<leader>2", function() require("harpoon"):list():select(2) end, desc = "Harpoon File 2" },
+      { "<leader>3", function() require("harpoon"):list():select(3) end, desc = "Harpoon File 3" },
+      { "<leader>4", function() require("harpoon"):list():select(4) end, desc = "Harpoon File 4" },
+    },
+    config = function()
+      require("harpoon"):setup()
+    end,
+  },
+  
   -- =========================================================================
   -- Code Actions & Refactoring
   -- =========================================================================
@@ -466,6 +657,29 @@ require("lazy").setup({
       { "<leader>cs", "<cmd>Trouble symbols toggle focus=false<cr>", desc = "Symbols (Trouble)" },
       { "<leader>cl", "<cmd>Trouble lsp toggle focus=false win.position=right<cr>", desc = "LSP Definitions / references / ... (Trouble)" },
     },
+  },
+  
+  -- Inline diagnostics
+  {
+    "rachartier/tiny-inline-diagnostic.nvim",
+    event = "LspAttach",
+    priority = 1000,
+    config = function()
+      require('tiny-inline-diagnostic').setup({
+        preset = "modern",
+        options = {
+          show_source = true,
+          throttle = 20,
+          softwrap = 30,
+          multiple_diag_under_cursor = true,
+          multilines = true,
+          show_all_diags_on_cursorline = false,
+          enable_on_insert = false,
+        },
+      })
+      -- Disable default virtual text
+      vim.diagnostic.config({ virtual_text = false })
+    end,
   },
   
 }, {

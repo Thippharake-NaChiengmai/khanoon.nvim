@@ -22,7 +22,7 @@ dashboard.section.header.val = {
   [[  ██║  ██╗██║  ██║██║  ██║██║ ╚████║╚██████╔╝╚██████╔╝██║ ╚████║]],
   [[  ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝ ╚═════╝  ╚═════╝ ╚═╝  ╚═══╝]],
   [[                                                    ]],
-  [[  .nvim (v1.2.2)                                    ]],
+  [[  .nvim (v1.2.3)                                    ]],
   [[                                                    ]],
 }
 
@@ -33,7 +33,7 @@ dashboard.section.buttons.val = {
   dashboard.button("r", "  Recent files", ":Telescope oldfiles <CR>"),
   dashboard.button("g", "  Find text", ":Telescope live_grep <CR>"),
   dashboard.button("c", "  Configuration", ":e $MYVIMRC <CR>"),
-  dashboard.button("u", "  Update plugins", ":PackerSync<CR>"),
+  dashboard.button("u", "  Update plugins", ":Lazy sync<CR>"),
   dashboard.button("q", "  Quit", ":qa<CR>"),
 }
  
@@ -63,17 +63,19 @@ local keybindings_help = {
 
 -- Set footer
 local function footer()
-  -- Safely get plugin count
+  -- Get plugin count from lazy.nvim
   local total_plugins = 0
-  if packer_plugins then
-    total_plugins = vim.tbl_count(packer_plugins)
+  local lazy_ok, lazy = pcall(require, "lazy")
+  if lazy_ok then
+    local stats = lazy.stats()
+    total_plugins = stats.count or 0
   end
   
   local datetime = os.date(" %d-%m-%Y   %H:%M:%S")
   local version = vim.version()
-  local nvim_version_info = "   v" .. version.major .. "." .. version.minor .. "." .. version.patch
+  local nvim_version_info = "neovim: v" .. version.major .. "." .. version.minor .. "." .. version.patch
 
-  return datetime .. "   " .. total_plugins .. " plugins" .. nvim_version_info
+  return datetime .. "   " .. total_plugins .. " plugins" .. "   ".. nvim_version_info
 end
 
 dashboard.section.footer.val = footer()

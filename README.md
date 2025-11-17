@@ -1,25 +1,73 @@
 # 🚀 KHANOON.nvim
 
-<img width="1894" height="993" alt="khanoon_nvim_img1" src="https://github.com/user-attachments/assets/f5824cb0-66cf-4419-b7e0-5d776b64f110" />
-
-> A modern, modular Neovim configuration optimized for Windows with full LSP support and beautiful UI.
+> A modern, modular Neovim configuration optimized for Windows with full LSP support, debugging, and beautiful UI powered by Lazy.nvim.
 
 ![Neovim](https://img.shields.io/badge/Neovim-0.9+-green.svg)
 ![License](https://img.shields.io/badge/License-MIT-blue.svg)
 ![Platform](https://img.shields.io/badge/Platform-Windows-blue.svg)
+![Plugins](https://img.shields.io/badge/Plugins-49-orange.svg)
 
 ## ✨ Features
 
-- 🎨 **Beautiful UI** - Tokyo Night theme with Lualine & Bufferline
-- 📁 **File Explorer** - Nvim-tree with git integration
-- 🔍 **Fuzzy Finder** - Telescope for fast file/text search
-- 🎯 **LSP Support** - Full Language Server Protocol with Mason
-- ⚡ **Autocompletion** - nvim-cmp with LSP, buffer, and path sources
-- 🌳 **Syntax Highlighting** - Treesitter with Zig compiler (Windows compatible)
-- 🔧 **Git Integration** - Gitsigns for git status in signcolumn
-- 💡 **Smart Editing** - Auto-pairs, commenting, and more
-- 📦 **Modular Structure** - Clean organization in `/lua/core`
-- 🎯 **Custom Dashboard** - Alpha-nvim with quick reference guide
+### 🎨 UI/UX
+
+- **Tokyo Night Theme** - Beautiful dark theme with multiple variants
+- **Lualine** - Elegant status line with git & LSP integration
+- **Bufferline** - VSCode-like buffer tabs
+- **Alpha Dashboard** - Custom startup screen with KHANOON branding
+- **Which-key** - Interactive command palette & keybinding hints
+- **Noice.nvim** - Modern UI for messages, cmdline & popups
+- **Notify** - Beautiful notification popups
+
+### 📁 File Management
+
+- **Nvim-tree** - Fast file explorer with git integration
+- **Telescope** - Fuzzy finder for files, text, buffers & more
+- **Auto-save** - Automatic file saving
+
+### 🎯 Code Intelligence
+
+- **LSP Support** - Full Language Server Protocol with Mason
+- **LSPSaga** - Enhanced LSP UI with better code actions & diagnostics
+- **Autocompletion** - nvim-cmp with LSP, buffer, path & snippet sources
+- **Treesitter** - Advanced syntax highlighting with Zig compiler (Windows compatible)
+- **Trouble** - Beautiful diagnostics & quickfix list
+
+### 🐛 Debugging
+
+- **nvim-dap** - Debug Adapter Protocol support
+- **DAP UI** - Interactive debugging interface
+- **DAP Virtual Text** - Inline variable values during debugging
+- **Mason DAP** - Automatic debugger installation for Python, Node.js & Chrome
+
+### 🔧 Git Integration
+
+- **Gitsigns** - Git status in signcolumn with inline blame
+- **Neogit** - Magit-style Git interface
+- **Diffview** - Cycle through diffs & review changes
+- **Git Blame** - Toggle git blame information
+
+### 💡 Smart Editing
+
+- **Auto-pairs** - Automatic bracket pairing
+- **Comment.nvim** - Smart commenting
+- **Surround** - Easily surround text with quotes, brackets, etc.
+- **Multi-cursor** - Multiple cursor editing (vim-visual-multi)
+- **Refactoring** - Advanced code refactoring tools
+- **Todo Comments** - Highlight & navigate TODO, FIXME, etc.
+
+### ⚡ Performance
+
+- **Lazy.nvim** - Fast plugin manager with lazy loading
+- **Optimized Startup** - Disabled unnecessary built-in plugins
+- **Async Execution** - Non-blocking plugin operations
+- **Large File Detection** - Auto-disable heavy features for large files
+
+### 📦 Structure
+
+- **Modular Design** - Clean organization in `/lua/core`
+- **49 Plugins** - Carefully selected and configured
+- **Easy Customization** - Well-documented configuration files
 
 ## 📋 Prerequisites
 
@@ -32,13 +80,12 @@ Before installing KHANOON.nvim, ensure you have the following installed:
 - **Git**
 - **Node.js** >= 16.x (for LSP servers)
 - **Zig** (for Treesitter compilation)
-- **MinGW** (for C complier) //if you don't have Visual Studio 2022 or Newly// - [Download here](https://sourceforge.net/projects/mingw/)
 
 ### Optional but Recommended
 
 - **ripgrep** (for Telescope live_grep)
 - **fd** (for faster file search)
-- **A Nerd Font** (for icons) //reccomment for Window Terminal usage// - [Download here](https://www.nerdfonts.com/)
+- **A Nerd Font** (for icons) - [Download here](https://www.nerdfonts.com/)
 
 ## 🔧 Installation
 
@@ -146,7 +193,7 @@ if (Test-Path "$env:LOCALAPPDATA\nvim") {
 }
 
 # Clone KHANOON.nvim
-git clone https://github.com/YOUR_USERNAME/khanoon.nvim.git "$env:LOCALAPPDATA\nvim"
+git clone https://github.com/Thippharake-NaChiengmai/khanoon.nvim.git "$env:LOCALAPPDATA\nvim"
 
 # Navigate to config directory
 cd "$env:LOCALAPPDATA\nvim"
@@ -160,68 +207,72 @@ nvim
 ```
 
 On first launch:
-1. Packer will automatically install
-2. Plugins will be downloaded and installed
-3. Wait for the installation to complete (you'll see progress messages)
-4. After installation, restart Neovim
 
-If plugins don't install automatically, run:
+1. **Lazy.nvim** will automatically bootstrap and install
+2. All 49 plugins will be downloaded and installed (lazy-loaded for performance)
+3. Wait for the installation to complete (you'll see the Lazy UI)
+4. **Restart Neovim** after installation completes
+5. Run `:checkhealth` to verify everything is working
+
+The KHANOON dashboard will appear on startup with quick access to common actions.
+
+### Step 6: Install Language Tools
+
+**Treesitter Parsers** (for syntax highlighting):
+
 ```vim
-:PackerSync
+:TSInstall lua vim python javascript typescript html css json markdown
+:TSInstallInfo  " Check installation status
 ```
 
-### Step 6: Install Treesitter Parsers
+**LSP Servers** (for code intelligence):
 
 ```vim
-" Install language parsers
-:TSInstall lua vim vimdoc query python javascript typescript html css json markdown
+:Mason  " Opens Mason UI
 
-" Check installation status
-:TSInstallInfo
-
-" Update parsers
-:TSUpdate
-```
-
-### Step 7: Install LSP Servers
-
-```vim
-" Open Mason
-:Mason
-
-" Navigate with j/k, press 'i' to install servers
+" Navigate with j/k, press 'i' to install, 'X' to uninstall
 " Recommended servers:
 " - lua_ls (Lua)
-" - tsserver (JavaScript/TypeScript)
+" - tsserver or ts_ls (JavaScript/TypeScript)
 " - pyright (Python)
 " - html, cssls, jsonls
-" - emmet_ls (HTML/CSS completion)
+" - emmet_ls (HTML/CSS)
 
-" Or install via command
-:MasonInstall lua-language-server typescript-language-server
+" Or install via command:
+:MasonInstall lua-language-server typescript-language-server pyright
+```
+
+**Debug Adapters** (already configured for Python, Node.js, Chrome):
+
+```vim
+:Mason
+" Install: debugpy, node-debug2-adapter, chrome-debug-adapter
 ```
 
 ## 📁 Project Structure
 
 ```
 nvim/
-├── init.lua                  # Main entry point
+├── init.lua                  # Main entry point with Lazy.nvim bootstrap
 ├── lua/
-│   ├── plugins.lua          # Plugin definitions (Packer)
-│   └── core/                # Configuration modules
-│       ├── alpha.lua        # Dashboard/Startup screen
-│       ├── autopairs.lua    # Auto-pairs configuration
-│       ├── bufferline.lua   # Buffer tabs
-│       ├── comment.lua      # Commenting functionality
-│       ├── gitsigns.lua     # Git integration
-│       ├── keymaps.lua      # Key mappings
-│       ├── lsp.lua          # LSP & completion setup
+│   ├── plugins.lua          # All 49 plugin definitions (Lazy.nvim)
+│   └── core/                # Modular configuration
+│       ├── options.lua      # Vim options & settings
+│       ├── keymaps.lua      # All keybindings
+│       ├── theme.lua        # Tokyo Night colorscheme
+│       ├── alpha.lua        # KHANOON startup dashboard
 │       ├── lualine.lua      # Status line
+│       ├── bufferline.lua   # Buffer tabs
 │       ├── nvim-tree.lua    # File explorer
-│       ├── options.lua      # Vim options
 │       ├── telescope.lua    # Fuzzy finder
-│       ├── theme.lua        # Colorscheme
-│       └── treesitter.lua   # Syntax highlighting
+│       ├── treesitter.lua   # Syntax highlighting with textobjects
+│       ├── lsp.lua          # LSP & completion
+│       ├── dap.lua          # Debugging configuration (NEW!)
+│       ├── git.lua          # Advanced Git workflow (NEW!)
+│       ├── gitsigns.lua     # Git signs
+│       ├── autopairs.lua    # Auto-pairs
+│       └── comment.lua      # Commenting
+├── FEATURES.md              # Comprehensive feature guide (NEW!)
 ├── .gitignore
 └── README.md
 ```
@@ -230,88 +281,136 @@ nvim/
 
 ### General
 
-| Key | Mode | Action |
-|-----|------|--------|
-| `<Space>` | - | Leader key (prefix for most commands) |
-| `jk` / `kj` | Insert | Exit to normal mode |
-| `<leader>w` | Normal | Save file |
-| `<leader>q` | Normal | Quit window |
-| `<leader>x` | Normal | Close current buffer |
-| `<C-h/j/k/l>` | Normal | Navigate between windows (splits) |
-| `<S-h>` | Normal | Previous buffer |
-| `<S-l>` | Normal | Next buffer |
+| Key           | Mode   | Action                                |
+| ------------- | ------ | ------------------------------------- |
+| `<Space>`     | -      | Leader key (prefix for most commands) |
+| `jk` / `kj`   | Insert | Exit to normal mode                   |
+| `<leader>w`   | Normal | Save file                             |
+| `<leader>q`   | Normal | Quit window                           |
+| `<leader>x`   | Normal | Close current buffer                  |
+| `<C-h/j/k/l>` | Normal | Navigate between windows (splits)     |
+| `<S-h>`       | Normal | Previous buffer                       |
+| `<S-l>`       | Normal | Next buffer                           |
 
 ### File Explorer (NvimTree)
 
-| Key | Action |
-|-----|--------|
-| `<leader>e` | Toggle file explorer |
-| `a` | Create new file/folder (ends with `/` for folder) |
-| `d` | Delete file/folder |
-| `r` | Rename file/folder |
-| `x` | Cut file/folder |
-| `c` | Copy file/folder |
-| `p` | Paste file/folder |
-| `H` | Toggle hidden files |
-| `R` | Refresh tree |
-| `?` | Show help |
+| Key         | Action                                            |
+| ----------- | ------------------------------------------------- |
+| `<leader>e` | Toggle file explorer                              |
+| `a`         | Create new file/folder (ends with `/` for folder) |
+| `d`         | Delete file/folder                                |
+| `r`         | Rename file/folder                                |
+| `x`         | Cut file/folder                                   |
+| `c`         | Copy file/folder                                  |
+| `p`         | Paste file/folder                                 |
+| `H`         | Toggle hidden files                               |
+| `R`         | Refresh tree                                      |
+| `?`         | Show help                                         |
 
 ### Fuzzy Finder (Telescope)
 
-| Key | Action |
-|-----|--------|
-| `<leader>f` | Find files |
-| `<leader>g` | Live grep (search text in files) |
-| `<C-n>` / `<Down>` | Next item |
-| `<C-p>` / `<Up>` | Previous item |
-| `<CR>` | Open selected file |
-| `<C-x>` | Open in horizontal split |
-| `<C-v>` | Open in vertical split |
-| `<C-t>` | Open in new tab |
+| Key                | Action                           |
+| ------------------ | -------------------------------- |
+| `<leader>ff`       | Find files                       |
+| `<leader>fg`       | Live grep (search text in files) |
+| `<leader>fb`       | Find buffers                     |
+| `<leader>fh`       | Find help tags                   |
+| `<leader>fo`       | Find recently opened files       |
+| `<C-n>` / `<Down>` | Next item                        |
+| `<C-p>` / `<Up>`   | Previous item                    |
+| `<CR>`             | Open selected file               |
+| `<C-x>`            | Open in horizontal split         |
+| `<C-v>`            | Open in vertical split           |
+| `<C-t>`            | Open in new tab                  |
 
 ### LSP (Code Intelligence)
 
-| Key | Action |
-|-----|--------|
-| `gd` | Go to definition |
-| `gr` | Show references |
-| `K` | Hover documentation |
-| `<leader>rn` | Rename symbol |
-| `<leader>ca` | Code action |
-| `[d` | Previous diagnostic |
-| `]d` | Next diagnostic |
-| `<leader>f` | Format document |
+| Key          | Action                        |
+| ------------ | ----------------------------- |
+| `K`          | Hover documentation (LSPSaga) |
+| `gd`         | Go to definition (LSPSaga)    |
+| `gD`         | Peek definition (LSPSaga)     |
+| `gr`         | Show references               |
+| `gi`         | Go to implementation          |
+| `<leader>ca` | Code action (LSPSaga)         |
+| `<leader>rn` | Rename symbol (LSPSaga)       |
+| `<leader>o`  | Outline (LSPSaga)             |
+| `[d`         | Previous diagnostic (LSPSaga) |
+| `]d`         | Next diagnostic (LSPSaga)     |
+| `<leader>f`  | Format document               |
+| `<leader>xx` | Toggle Trouble diagnostics    |
+| `<leader>xw` | Workspace diagnostics         |
+| `<leader>xd` | Document diagnostics          |
 
-### Git (Gitsigns)
+### Debugging (DAP)
 
-| Key | Action |
-|-----|--------|
-| `<leader>gb` | Git blame line |
-| `<leader>gd` | Git diff this |
-| `<leader>gp` | Preview hunk |
-| `<leader>gr` | Reset hunk |
-| `<leader>gs` | Stage hunk |
-| `]c` | Next git hunk |
-| `[c` | Previous git hunk |
+| Key          | Action                     |
+| ------------ | -------------------------- |
+| `<F5>`       | Continue / Start debugging |
+| `<F10>`      | Step over                  |
+| `<F11>`      | Step into                  |
+| `<F12>`      | Step out                   |
+| `<leader>db` | Toggle breakpoint          |
+| `<leader>dB` | Set conditional breakpoint |
+| `<leader>dr` | Open REPL                  |
+| `<leader>dl` | Run last debug session     |
+
+### Git
+
+| Key          | Action                |
+| ------------ | --------------------- |
+| `<leader>gg` | Open Neogit (Git UI)  |
+| `<leader>gd` | Open Diffview         |
+| `<leader>gh` | Diffview file history |
+| `<leader>gb` | Toggle git blame line |
+| `<leader>gp` | Preview hunk          |
+| `<leader>gr` | Reset hunk            |
+| `<leader>gs` | Stage hunk            |
+| `]c`         | Next git hunk         |
+| `[c`         | Previous git hunk     |
 
 ### Commenting
 
-| Key | Mode | Action |
-|-----|------|--------|
-| `gcc` | Normal | Toggle line comment |
-| `gc` | Visual | Toggle comment for selection |
-| `<leader>/` | Normal/Visual | Toggle comment |
+| Key         | Mode          | Action                       |
+| ----------- | ------------- | ---------------------------- |
+| `gcc`       | Normal        | Toggle line comment          |
+| `gc`        | Visual        | Toggle comment for selection |
+| `<leader>/` | Normal/Visual | Toggle comment               |
+
+### Terminal
+
+| Key          | Action                   |
+| ------------ | ------------------------ |
+| `<C-\>`      | Toggle floating terminal |
+| `<leader>tf` | Float terminal           |
+| `<leader>th` | Horizontal terminal      |
+| `<leader>tv` | Vertical terminal        |
 
 ### Editing
 
-| Key | Mode | Action |
-|-----|------|--------|
-| `yy` | Normal | Copy line |
-| `dd` | Normal | Cut line |
-| `p` | Normal | Paste after cursor |
-| `P` | Normal | Paste before cursor |
-| `u` | Normal | Undo |
-| `<C-r>` | Normal | Redo |
+| Key                | Mode   | Action                                                  |
+| ------------------ | ------ | ------------------------------------------------------- |
+| `ys<motion><char>` | Normal | Surround with char (e.g., `ysiw"` wraps word in quotes) |
+| `ds<char>`         | Normal | Delete surrounding char                                 |
+| `cs<old><new>`     | Normal | Change surrounding char                                 |
+| `<C-n>`            | Visual | Multi-cursor (select next match)                        |
+| `<C-x>`            | Visual | Multi-cursor (skip match)                               |
+| `yy`               | Normal | Copy line                                               |
+| `dd`               | Normal | Cut line                                                |
+| `p`                | Normal | Paste after cursor                                      |
+| `P`                | Normal | Paste before cursor                                     |
+| `u`                | Normal | Undo                                                    |
+| `<C-r>`            | Normal | Redo                                                    |
+
+### Navigation
+
+| Key     | Action                   |
+| ------- | ------------------------ |
+| `<C-d>` | Scroll down half page    |
+| `<C-u>` | Scroll up half page      |
+| `gg`    | Go to first line         |
+| `G`     | Go to last line          |
+| `%`     | Jump to matching bracket |
 
 ## 🎨 Customization
 
@@ -325,6 +424,7 @@ vim.g.tokyonight_style = 'night'  -- Change to your preferred style
 ```
 
 Other popular themes you can add:
+
 - `catppuccin/nvim` - Catppuccin theme
 - `rose-pine/neovim` - Rose Pine theme
 - `EdenEast/nightfox.nvim` - Nightfox themes
@@ -337,6 +437,7 @@ Other popular themes you can add:
 4. Restart Neovim
 
 Or install via command:
+
 ```vim
 :MasonInstall rust-analyzer  " Example: Rust
 :MasonInstall gopls          " Example: Go
@@ -344,20 +445,27 @@ Or install via command:
 
 ### Add New Plugins
 
-Edit `lua/plugins.lua`:
+Edit `lua/plugins.lua` and add to the plugin list:
 
 ```lua
-return require('packer').startup(function(use)
+return {
   -- ... existing plugins ...
-  
+
   -- Add your plugin here
-  use 'author/plugin-name'
-end)
+  {
+    'author/plugin-name',
+    lazy = true,  -- Optional: lazy load
+    config = function()
+      -- Plugin configuration
+    end,
+  },
+}
 ```
 
 Then run:
+
 ```vim
-:PackerSync
+:Lazy sync
 ```
 
 ### Modify Keymaps
@@ -369,21 +477,30 @@ Edit `lua/core/keymaps.lua` to customize key mappings to your preference.
 ### Plugins not installing
 
 ```vim
-:PackerSync
+:Lazy sync     " Sync all plugins
+:Lazy clean    " Remove unused plugins
+:Lazy update   " Update all plugins
 ```
 
-If that doesn't work:
+Check plugin status:
+
 ```vim
-:PackerClean
-:PackerSync
+:Lazy          " Open Lazy UI
 ```
 
 ### LSP not working
 
 ```vim
-:Mason          " Check if language server is installed
-:LspInfo        " Check LSP status
-:LspInstall     " Install LSP for current filetype
+:Mason         " Check if language server is installed
+:LspInfo       " Check LSP status for current buffer
+:checkhealth   " Run full health check
+```
+
+Debug LSP:
+
+```vim
+:LspLog        " View LSP logs
+:LspRestart    " Restart LSP server
 ```
 
 ### Treesitter errors
@@ -394,10 +511,26 @@ If that doesn't work:
 ```
 
 If compilation fails:
+
 ```vim
 :TSUninstall <language>
 :TSInstall <language>
 ```
+
+**Windows users**: Ensure Zig is installed for Treesitter compilation:
+
+```powershell
+winget install zig.zig
+```
+
+### DAP (Debugging) not working
+
+```vim
+:Mason         " Install debuggers: debugpy, node-debug2-adapter
+:checkhealth dap
+```
+
+Ensure debug adapters are configured in `lua/core/dap.lua`.
 
 ### Icons not showing
 
@@ -408,6 +541,7 @@ If compilation fails:
 ### Telescope grep not working
 
 Install ripgrep:
+
 ```powershell
 winget install BurntSushi.ripgrep.MSVC
 ```
@@ -422,27 +556,38 @@ git pull
 ```
 
 Then in Neovim:
+
 ```vim
-:PackerSync
+:Lazy sync
 ```
 
 ### Update Plugins
 
 ```vim
-:PackerUpdate
+:Lazy update   " Update all plugins
+:Lazy sync     " Sync (install/update/clean)
 ```
 
-### Update LSP Servers
+### Update LSP Servers & Debuggers
 
 ```vim
 :Mason
-# Press 'U' to update all
+# Press 'U' to update all installed tools
 ```
 
 ### Update Treesitter Parsers
 
 ```vim
-:TSUpdate
+:TSUpdate all
+```
+
+### Full System Update
+
+```vim
+:Lazy update
+:Mason
+" Press 'U' in Mason
+:TSUpdate all
 ```
 
 ## 📚 Learning Resources
@@ -459,27 +604,47 @@ Then in Neovim:
 
 - `:help <topic>` - Get help on any topic
 - `:checkhealth` - Check Neovim health
-- `:Mason` - Manage LSP servers
+- `:Lazy` - Manage plugins
+- `:Mason` - Manage LSP servers & debuggers
 - `:TSInstallInfo` - Check Treesitter status
 - `:LspInfo` - Check LSP status
+- `<Space>` then wait - See all available keybindings (Which-key)
+- See `FEATURES.md` for comprehensive feature guide
 
 ### Common Issues
 
 **Q: Neovim is slow**
+
 - A: Disable treesitter for large files (already configured)
 - Run `:checkhealth` to find issues
 
 **Q: LSP autocomplete not working**
+
 - A: Install language server via `:Mason`
 - Check `:LspInfo` for errors
+- Run `:checkhealth lsp`
 
 **Q: Git signs not showing**
+
 - A: Ensure you're in a git repository
 - Check `:Gitsigns status`
+
+**Q: Debugging not working**
+
+- A: Install debuggers via `:Mason`
+- Check `:checkhealth dap`
+- Ensure debug adapters are configured in `lua/core/dap.lua`
+
+**Q: Plugins not loading**
+
+- A: Run `:Lazy sync`
+- Check `:Lazy` UI for errors
+- Restart Neovim
 
 ## 🤝 Contributing
 
 Contributions are welcome! Feel free to:
+
 - Report bugs
 - Suggest features
 - Submit pull requests
@@ -490,26 +655,67 @@ MIT License - feel free to use and modify!
 
 ## 🙏 Acknowledgments
 
-This configuration uses these amazing plugins:
-- [packer.nvim](https://github.com/wbthomason/packer.nvim) - Plugin manager
-- [tokyonight.nvim](https://github.com/folke/tokyonight.nvim) - Color scheme
-- [nvim-tree.lua](https://github.com/nvim-tree/nvim-tree.lua) - File explorer
-- [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim) - Fuzzy finder
-- [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig) - LSP support
-- [mason.nvim](https://github.com/williamboman/mason.nvim) - LSP installer
-- [nvim-cmp](https://github.com/hrsh7th/nvim-cmp) - Autocompletion
-- [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) - Syntax highlighting
-- [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim) - Git integration
+This configuration is powered by 49 carefully selected plugins:
+
+### Core Infrastructure
+
+- [lazy.nvim](https://github.com/folke/lazy.nvim) - Fast plugin manager with lazy loading
+- [plenary.nvim](https://github.com/nvim-lua/plenary.nvim) - Lua utility functions
+
+### UI/UX
+
+- [tokyonight.nvim](https://github.com/folke/tokyonight.nvim) - Beautiful color scheme
 - [lualine.nvim](https://github.com/nvim-lualine/lualine.nvim) - Status line
 - [bufferline.nvim](https://github.com/akinsho/bufferline.nvim) - Buffer tabs
 - [alpha-nvim](https://github.com/goolord/alpha-nvim) - Dashboard
+- [which-key.nvim](https://github.com/folke/which-key.nvim) - Command palette
+- [noice.nvim](https://github.com/folke/noice.nvim) - Modern UI
+- [nvim-notify](https://github.com/rcarriga/nvim-notify) - Notifications
+- [toggleterm.nvim](https://github.com/akinsho/toggleterm.nvim) - Floating terminal
+
+### File Management
+
+- [nvim-tree.lua](https://github.com/nvim-tree/nvim-tree.lua) - File explorer
+- [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim) - Fuzzy finder
+
+### Code Intelligence
+
+- [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig) - LSP support
+- [mason.nvim](https://github.com/williamboman/mason.nvim) - LSP/DAP installer
+- [lspsaga.nvim](https://github.com/nvimdev/lspsaga.nvim) - Enhanced LSP UI
+- [nvim-cmp](https://github.com/hrsh7th/nvim-cmp) - Autocompletion
+- [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) - Syntax highlighting
+- [trouble.nvim](https://github.com/folke/trouble.nvim) - Diagnostics
+
+### Debugging
+
+- [nvim-dap](https://github.com/mfussenegger/nvim-dap) - Debug Adapter Protocol
+- [nvim-dap-ui](https://github.com/rcarriga/nvim-dap-ui) - DAP UI
+- [nvim-dap-virtual-text](https://github.com/theHamsta/nvim-dap-virtual-text) - Inline debugging
+
+### Git
+
+- [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim) - Git signs
+- [neogit](https://github.com/NeogitOrg/neogit) - Git interface
+- [diffview.nvim](https://github.com/sindrets/diffview.nvim) - Diff viewer
+- [git-blame.nvim](https://github.com/f-person/git-blame.nvim) - Git blame
+
+### Editing
+
 - [Comment.nvim](https://github.com/numToStr/Comment.nvim) - Commenting
 - [nvim-autopairs](https://github.com/windwp/nvim-autopairs) - Auto-pairs
+- [nvim-surround](https://github.com/kylechui/nvim-surround) - Surround text
+- [vim-visual-multi](https://github.com/mg979/vim-visual-multi) - Multi-cursor
+- [refactoring.nvim](https://github.com/ThePrimeagen/refactoring.nvim) - Refactoring
+- [todo-comments.nvim](https://github.com/folke/todo-comments.nvim) - TODO highlighting
+- [auto-save.nvim](https://github.com/Pocco81/auto-save.nvim) - Auto-save
 
-And many more amazing contributors to the Neovim ecosystem!
+And many more! See `lua/plugins.lua` for the complete list.
+
+Special thanks to the Neovim community and all plugin authors! 🙏
 
 ---
 
 **Made with ❤️ by KHANOON**
 
-*Happy coding! 🚀*
+_Happy coding! 🚀_

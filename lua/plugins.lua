@@ -38,10 +38,8 @@ require("lazy").setup({
     event = "VeryLazy",
     config = function()
       require("which-key").setup({
-        window = {
-          border = "rounded",
-          position = "bottom",
-        },
+        preset = "modern",
+        delay = 500,
       })
     end,
   },

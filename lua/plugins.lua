@@ -500,6 +500,9 @@ require("lazy").setup({
       },
     },
   },
+  rocks = {
+    enabled = false,  -- ปิด luarocks (ไม่จำเป็นสำหรับ config นี้)
+  },
   ui = {
     border = "rounded",
   },

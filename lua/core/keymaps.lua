@@ -47,7 +47,7 @@ keymap('n', 'K', '<cmd>Lspsaga hover_doc<CR>', { desc = "Hover Documentation" })
 keymap('n', '<leader>rn', '<cmd>Lspsaga rename<CR>', { desc = "Rename" })
 keymap('n', 'gd', '<cmd>Lspsaga goto_definition<CR>', { desc = "Go to Definition" })
 keymap('n', 'gD', '<cmd>Lspsaga peek_definition<CR>', { desc = "Peek Definition" })
-keymap('n', '<leader>o', '<cmd>Lspsaga outline<CR>', { desc = "Toggle Outline" })
+keymap('n', '<leader>o', '<cmd>Lspsaga outline<CR>', { desc = "Outline (LSP Active)" })
 
 -- --- Diagnostics ---
 keymap('n', '[d', '<cmd>Lspsaga diagnostic_jump_prev<CR>', { desc = "Previous Diagnostic" })

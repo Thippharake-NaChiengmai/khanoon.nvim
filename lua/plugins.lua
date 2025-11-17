@@ -16,19 +16,19 @@ require("lazy").setup({
   
   {
     "nvim-lualine/lualine.nvim",
-    dependencies = { "nvim-tree/nvim-web-devicons" },
+    dependencies = { "DaikyXendo/nvim-material-icon" },
     event = "VeryLazy",
   },
   
   {
     "akinsho/bufferline.nvim",
-    dependencies = "nvim-tree/nvim-web-devicons",
+    dependencies = "DaikyXendo/nvim-material-icon",
     event = "VeryLazy",
   },
   
   {
     "goolord/alpha-nvim",
-    dependencies = { "nvim-tree/nvim-web-devicons" },
+    dependencies = { "DaikyXendo/nvim-material-icon" },
     event = "VimEnter",
   },
   
@@ -115,7 +115,7 @@ require("lazy").setup({
   -- =========================================================================
   {
     "nvim-tree/nvim-tree.lua",
-    dependencies = { "nvim-tree/nvim-web-devicons" },
+    dependencies = { "DaikyXendo/nvim-material-icon" },
     cmd = { "NvimTreeToggle", "NvimTreeFocus" },
     keys = {
       { "<leader>e", "<cmd>NvimTreeToggle<cr>", desc = "Toggle File Explorer" },
@@ -180,12 +180,9 @@ require("lazy").setup({
   "nvim-lua/plenary.nvim",
   "MunifTanjim/nui.nvim",
   {
-    "nvim-tree/nvim-web-devicons",
-    lazy = true,
-  },
-  {
     "DaikyXendo/nvim-material-icon",
-    lazy = true,
+    lazy = false,
+    priority = 1000,
   },
   
   -- =========================================================================
@@ -278,7 +275,7 @@ require("lazy").setup({
     end,
     dependencies = {
       "nvim-treesitter/nvim-treesitter",
-      "nvim-tree/nvim-web-devicons",
+      "DaikyXendo/nvim-material-icon",
     },
   },
   
@@ -463,7 +460,7 @@ require("lazy").setup({
   -- Trouble - Better diagnostics
   {
     "folke/trouble.nvim",
-    dependencies = { "nvim-tree/nvim-web-devicons" },
+    dependencies = { "DaikyXendo/nvim-material-icon" },
     cmd = "Trouble",
     keys = {
       { "<leader>xx", "<cmd>Trouble diagnostics toggle<cr>", desc = "Diagnostics (Trouble)" },

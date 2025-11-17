@@ -96,9 +96,43 @@ Before installing KHANOON.nvim, ensure you have the following installed:
 
 ## 🔧 Installation
 
-### Step 1: Install Prerequisites
+### 🚀 One-Click Installation (Recommended)
 
-#### Using Winget (Recommended)
+**The easiest way to install KHANOON.nvim - perfect for beginners!**
+
+Open PowerShell and run:
+
+```powershell
+irm https://raw.githubusercontent.com/Thippharake-NaChiengmai/khanoon.nvim/main/install.ps1 | iex
+```
+
+Or download and run the installer:
+
+1. Download: [install.ps1](https://raw.githubusercontent.com/Thippharake-NaChiengmai/khanoon.nvim/main/install.ps1)
+2. Right-click the file → "Run with PowerShell"
+
+**What the installer does:**
+
+- ✅ Installs Neovim (latest stable)
+- ✅ Installs all required tools (git, ripgrep, fd, fzf)
+- ✅ Installs Node.js for LSP servers
+- ✅ Downloads KHANOON.nvim configuration
+- ✅ Installs JetBrainsMono Nerd Font
+- ✅ Installs all 60+ plugins automatically
+
+**Time required:** 5-10 minutes ⏱
+
+After installation, just set your terminal font to **JetBrainsMono Nerd Font** and you're ready to go! 🎉
+
+---
+
+### 📦 Manual Installation
+
+If you prefer to install manually or the one-click installer doesn't work:
+
+#### Step 1: Install Prerequisites
+
+##### Using Winget (Recommended)
 
 ```powershell
 # Install Neovim
@@ -110,27 +144,27 @@ winget install Git.Git
 # Install Node.js
 winget install OpenJS.NodeJS.LTS
 
-# Install Zig (required for Treesitter)
-winget install zig.zig
-
 # Install ripgrep (optional)
 winget install BurntSushi.ripgrep.MSVC
 
 # Install fd (optional)
 winget install sharkdp.fd
+
+# Install fzf (optional)
+winget install junegunn.fzf
 ```
 
-#### Using Chocolatey
+##### Using Chocolatey
 
 ```powershell
 # Install Chocolatey first if you haven't
 # Visit: https://chocolatey.org/install
 
 # Install all dependencies
-choco install neovim git nodejs zig ripgrep fd -y
+choco install neovim git nodejs ripgrep fd fzf -y
 ```
 
-#### Using Scoop
+##### Using Scoop
 
 ```powershell
 # Install Scoop first if you haven't
@@ -141,10 +175,10 @@ scoop bucket add main
 scoop bucket add extras
 
 # Install all dependencies
-scoop install neovim git nodejs zig ripgrep fd
+scoop install neovim git nodejs ripgrep fd fzf
 ```
 
-### Step 2: Verify Installation
+#### Step 2: Verify Installation
 
 ```powershell
 # Verify Neovim
@@ -157,9 +191,6 @@ git --version
 # Verify Node.js
 node --version
 
-# Verify Zig
-zig version
-
 # Verify ripgrep (optional)
 rg --version
 
@@ -167,7 +198,7 @@ rg --version
 fd --version
 ```
 
-### Step 3: Set Up Environment Variables
+#### Step 3: Set Up Environment Variables
 
 The installers should automatically add these to your PATH. To verify:
 
@@ -176,7 +207,6 @@ The installers should automatically add these to your PATH. To verify:
 Get-Command nvim
 Get-Command git
 Get-Command node
-Get-Command zig
 ```
 
 If any command is not found, add it manually to your PATH:
@@ -189,9 +219,8 @@ If any command is not found, add it manually to your PATH:
    - `C:\Program Files\Neovim\bin`
    - `C:\Program Files\Git\cmd`
    - `C:\Program Files\nodejs`
-   - `C:\Users\YourUsername\AppData\Local\zig`
 
-### Step 4: Install KHANOON.nvim
+#### Step 4: Install KHANOON.nvim
 
 ```powershell
 # Backup existing config (if any)
@@ -206,7 +235,7 @@ git clone https://github.com/Thippharake-NaChiengmai/khanoon.nvim.git "$env:LOCA
 cd "$env:LOCALAPPDATA\nvim"
 ```
 
-### Step 5: First Launch
+#### Step 5: First Launch
 
 ```powershell
 # Launch Neovim
@@ -216,14 +245,14 @@ nvim
 On first launch:
 
 1. **Lazy.nvim** will automatically bootstrap and install
-2. All 49 plugins will be downloaded and installed (lazy-loaded for performance)
+2. All 60+ plugins will be downloaded and installed (lazy-loaded for performance)
 3. Wait for the installation to complete (you'll see the Lazy UI)
 4. **Restart Neovim** after installation completes
 5. Run `:checkhealth` to verify everything is working
 
 The KHANOON dashboard will appear on startup with quick access to common actions.
 
-### Step 6: Install Language Tools
+#### Step 6: Install Language Tools
 
 **Treesitter Parsers** (for syntax highlighting):
 
@@ -254,34 +283,6 @@ The KHANOON dashboard will appear on startup with quick access to common actions
 ```vim
 :Mason
 " Install: debugpy, node-debug2-adapter, chrome-debug-adapter
-```
-
-## 📁 Project Structure
-
-```
-nvim/
-├── init.lua                  # Main entry point with Lazy.nvim bootstrap
-├── lua/
-│   ├── plugins.lua          # All 49 plugin definitions (Lazy.nvim)
-│   └── core/                # Modular configuration
-│       ├── options.lua      # Vim options & settings
-│       ├── keymaps.lua      # All keybindings
-│       ├── theme.lua        # Tokyo Night colorscheme
-│       ├── alpha.lua        # KHANOON startup dashboard
-│       ├── lualine.lua      # Status line
-│       ├── bufferline.lua   # Buffer tabs
-│       ├── nvim-tree.lua    # File explorer
-│       ├── telescope.lua    # Fuzzy finder
-│       ├── treesitter.lua   # Syntax highlighting with textobjects
-│       ├── lsp.lua          # LSP & completion
-│       ├── dap.lua          # Debugging configuration (NEW!)
-│       ├── git.lua          # Advanced Git workflow (NEW!)
-│       ├── gitsigns.lua     # Git signs
-│       ├── autopairs.lua    # Auto-pairs
-│       └── comment.lua      # Commenting
-├── FEATURES.md              # Comprehensive feature guide (NEW!)
-├── .gitignore
-└── README.md
 ```
 
 ## ⌨️ Key Mappings

@@ -5,7 +5,7 @@
 ![Neovim](https://img.shields.io/badge/Neovim-0.9+-green.svg)
 ![License](https://img.shields.io/badge/License-MIT-blue.svg)
 ![Platform](https://img.shields.io/badge/Platform-Windows-blue.svg)
-![Plugins](https://img.shields.io/badge/Plugins-49-orange.svg)
+![Plugins](https://img.shields.io/badge/Plugins-60+-orange.svg)
 
 ## ✨ Features
 
@@ -18,6 +18,10 @@
 - **Which-key** - Interactive command palette & keybinding hints
 - **Noice.nvim** - Modern UI for messages, cmdline & popups
 - **Notify** - Beautiful notification popups
+- **Rainbow Brackets** - Colorful bracket pair highlighting (7 colors)
+- **Indent Guides** - Visual indentation lines for better code structure
+- **Colorizer** - Live color preview for hex/RGB/HSL color codes
+- **Inline Diagnostics** - Modern inline error/warning display
 
 ### 📁 File Management
 
@@ -32,6 +36,9 @@
 - **Autocompletion** - nvim-cmp with LSP, buffer, path & snippet sources
 - **Treesitter** - Advanced syntax highlighting with Zig compiler (Windows compatible)
 - **Trouble** - Beautiful diagnostics & quickfix list
+- **Conform.nvim** - Modern auto-formatting with format-on-save
+- **Flash** - Lightning-fast cursor movement and navigation
+- **Harpoon** - Quick file bookmarking and switching
 
 ### 🐛 Debugging
 
@@ -66,7 +73,7 @@
 ### 📦 Structure
 
 - **Modular Design** - Clean organization in `/lua/core`
-- **49 Plugins** - Carefully selected and configured
+- **60+ Plugins** - Carefully selected and configured
 - **Easy Customization** - Well-documented configuration files
 
 ## 📋 Prerequisites
@@ -386,6 +393,34 @@ nvim/
 | `<leader>th` | Horizontal terminal      |
 | `<leader>tv` | Vertical terminal        |
 
+### Flash Navigation (Fast Movement)
+
+| Key | Mode              | Action                             |
+| --- | ----------------- | ---------------------------------- |
+| `s` | Normal/Visual/Ops | Jump to any visible location       |
+| `S` | Normal/Visual/Ops | Jump using Treesitter (smart jump) |
+| `r` | Operator          | Remote Flash (for operations)      |
+| `R` | Visual/Operator   | Treesitter search (select/operate) |
+
+### Harpoon (File Bookmarks)
+
+| Key          | Action                      |
+| ------------ | --------------------------- |
+| `<leader>ha` | Add current file to Harpoon |
+| `<leader>hh` | Toggle Harpoon quick menu   |
+| `<leader>1`  | Jump to Harpoon file 1      |
+| `<leader>2`  | Jump to Harpoon file 2      |
+| `<leader>3`  | Jump to Harpoon file 3      |
+| `<leader>4`  | Jump to Harpoon file 4      |
+
+### Formatting
+
+| Key              | Mode    | Action                               |
+| ---------------- | ------- | ------------------------------------ |
+| `<leader>cf`     | Any     | Format current buffer                |
+| `:FormatToggle`  | Command | Toggle format-on-save                |
+| `:FormatToggle!` | Command | Toggle format-on-save (buffer-local) |
+
 ### Editing
 
 | Key                | Mode   | Action                                                  |
@@ -532,11 +567,22 @@ winget install zig.zig
 
 Ensure debug adapters are configured in `lua/core/dap.lua`.
 
-### Icons not showing
+**Q: Icons not showing**
 
 1. Install a Nerd Font from [nerdfonts.com](https://www.nerdfonts.com/)
 2. Set the font in your terminal (e.g., "JetBrainsMono Nerd Font")
 3. Restart terminal and Neovim
+
+**Q: Formatting not working**
+
+- A: Install formatters via `:Mason` (e.g., `stylua`, `prettier`, `black`)
+- Check `:ConformInfo` for status
+- Toggle format-on-save with `:FormatToggle`
+
+**Q: Rainbow brackets not showing**
+
+- A: Ensure Treesitter is properly installed: `:TSInstallInfo`
+- Install language parser: `:TSInstall <language>`
 
 ### Telescope grep not working
 
@@ -655,7 +701,7 @@ MIT License - feel free to use and modify!
 
 ## 🙏 Acknowledgments
 
-This configuration is powered by 49 carefully selected plugins:
+This configuration is powered by 60+ carefully selected plugins:
 
 ### Core Infrastructure
 
@@ -672,6 +718,10 @@ This configuration is powered by 49 carefully selected plugins:
 - [noice.nvim](https://github.com/folke/noice.nvim) - Modern UI
 - [nvim-notify](https://github.com/rcarriga/nvim-notify) - Notifications
 - [toggleterm.nvim](https://github.com/akinsho/toggleterm.nvim) - Floating terminal
+- [rainbow-delimiters.nvim](https://github.com/HiPhish/rainbow-delimiters.nvim) - Rainbow brackets
+- [indent-blankline.nvim](https://github.com/lukas-reineke/indent-blankline.nvim) - Indent guides
+- [nvim-colorizer.lua](https://github.com/norcalli/nvim-colorizer.lua) - Color highlighter
+- [tiny-inline-diagnostic.nvim](https://github.com/rachartier/tiny-inline-diagnostic.nvim) - Inline diagnostics
 
 ### File Management
 
@@ -686,6 +736,7 @@ This configuration is powered by 49 carefully selected plugins:
 - [nvim-cmp](https://github.com/hrsh7th/nvim-cmp) - Autocompletion
 - [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) - Syntax highlighting
 - [trouble.nvim](https://github.com/folke/trouble.nvim) - Diagnostics
+- [conform.nvim](https://github.com/stevearc/conform.nvim) - Auto-formatting
 
 ### Debugging
 
@@ -699,6 +750,11 @@ This configuration is powered by 49 carefully selected plugins:
 - [neogit](https://github.com/NeogitOrg/neogit) - Git interface
 - [diffview.nvim](https://github.com/sindrets/diffview.nvim) - Diff viewer
 - [git-blame.nvim](https://github.com/f-person/git-blame.nvim) - Git blame
+
+### Navigation & Productivity
+
+- [flash.nvim](https://github.com/folke/flash.nvim) - Fast cursor movement
+- [harpoon](https://github.com/ThePrimeagen/harpoon) - File bookmarks
 
 ### Editing
 

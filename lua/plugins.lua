@@ -748,6 +748,90 @@ require("lazy").setup({
     end,
   },
   
+  -- =========================================================================
+  -- Minimap & Navigation
+  -- =========================================================================
+  
+  -- Minimap (code overview) - Windows compatible
+  {
+    "gorbit99/codewindow.nvim",
+    keys = {
+      { "<leader>mo", "<cmd>lua require('codewindow').toggle_minimap()<cr>", desc = "Toggle Minimap" },
+      { "<leader>mm", "<cmd>lua require('codewindow').toggle_focus()<cr>", desc = "Focus Minimap" },
+    },
+    config = function()
+      local codewindow = require('codewindow')
+      codewindow.setup({
+        auto_enable = false,
+        minimap_width = 15,
+        relative = 'editor',
+        window_border = 'single',
+        exclude_filetypes = { 
+          'help', 
+          'alpha', 
+          'dashboard',
+          'neo-tree',
+          'Trouble',
+          'lazy',
+          'mason',
+          'notify',
+          'toggleterm',
+        },
+      })
+    end,
+  },
+  
+  -- Satellite (lightweight scrollbar minimap)
+  {
+    "lewis6991/satellite.nvim",
+    event = "VeryLazy",
+    config = function()
+      require('satellite').setup({
+        current_only = false,
+        winblend = 50,
+        zindex = 40,
+        excluded_filetypes = {
+          'help',
+          'alpha',
+          'dashboard',
+          'neo-tree',
+          'Trouble',
+          'lazy',
+          'mason',
+          'notify',
+          'toggleterm',
+        },
+        width = 2,
+        handlers = {
+          cursor = {
+            enable = true,
+            symbols = { '⎺', '⎻', '⎼', '⎽' }
+          },
+          search = {
+            enable = true,
+          },
+          diagnostic = {
+            enable = true,
+            signs = {'-', '=', '≡'},
+            min_severity = vim.diagnostic.severity.HINT,
+          },
+          gitsigns = {
+            enable = true,
+            signs = {
+              add = "│",
+              change = "│",
+              delete = "-",
+            },
+          },
+          marks = {
+            enable = true,
+            show_builtins = false,
+          },
+        },
+      })
+    end,
+  },
+  
 }, {
   -- =========================================================================
   -- lazy.nvim Configuration

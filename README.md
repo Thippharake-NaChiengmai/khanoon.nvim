@@ -1,5 +1,7 @@
 # 🚀 KHANOON.nvim
 
+<img width="1889" height="977" alt="khanoon_nvim_img2" src="https://github.com/user-attachments/assets/3656fe82-6b3c-4e4b-b813-7c54dfe111ed" />
+
 > A modern, modular Neovim configuration optimized for Windows with full LSP support, debugging, and beautiful UI powered by Lazy.nvim.
 
 ![Neovim](https://img.shields.io/badge/Neovim-0.9+-green.svg)

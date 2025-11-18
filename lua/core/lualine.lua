@@ -10,7 +10,7 @@ end
 
 lualine.setup({
   options = {
-    theme = 'tokyonight',
+    theme = 'auto',  -- Auto-detect theme from colorscheme
     icons_enabled = true,
     component_separators = { left = '', right = ''},
     section_separators = { left = '', right = ''},

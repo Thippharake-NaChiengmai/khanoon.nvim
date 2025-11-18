@@ -9,9 +9,22 @@ require("lazy").setup({
   -- UI & Themes
   -- =========================================================================
   {
-    "folke/tokyonight.nvim",
+    "projekt0n/github-nvim-theme",
     lazy = false,
     priority = 1000,
+    config = function()
+      require('github-theme').setup({
+        options = {
+          transparent = false,
+          terminal_colors = true,
+          styles = {
+            comments = 'italic',
+            keywords = 'bold',
+            types = 'italic,bold',
+          },
+        },
+      })
+    end,
   },
   
   {
@@ -153,11 +166,63 @@ require("lazy").setup({
       { "<leader>fc", "<cmd>Telescope commands<cr>", desc = "Commands" },
     },
     config = function()
+      local actions = require('telescope.actions')
+      
       require('telescope').setup({
         defaults = {
-          file_ignore_patterns = { "node_modules", ".git", "%.lock" },
+          -- Prompt and selection
+          prompt_prefix = "🔍 ",
+          selection_caret = "❯ ",
+          entry_prefix = "  ",
+          
+          -- Layout configuration for better readability
+          layout_strategy = 'horizontal',
           layout_config = {
-            horizontal = { preview_width = 0.6 },
+            horizontal = {
+              prompt_position = "top",
+              preview_width = 0.5,
+              width = 0.9,
+              height = 0.85,
+            },
+          },
+          sorting_strategy = "ascending",
+          
+          -- UI improvements
+          border = true,
+          borderchars = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
+          color_devicons = true,
+          path_display = { "smart" },
+          
+          -- File ignore patterns
+          file_ignore_patterns = { 
+            "node_modules", 
+            ".git/", 
+            "%.lock",
+            "%.jpg",
+            "%.jpeg",
+            "%.png",
+            "%.gif",
+            "%.pdf",
+          },
+          
+          -- Mappings for better navigation
+          mappings = {
+            i = {
+              ["<C-j>"] = actions.move_selection_next,
+              ["<C-k>"] = actions.move_selection_previous,
+              ["<C-n>"] = actions.cycle_history_next,
+              ["<C-p>"] = actions.cycle_history_prev,
+              ["<C-u>"] = actions.preview_scrolling_up,
+              ["<C-d>"] = actions.preview_scrolling_down,
+            },
+            n = {
+              ["q"] = actions.close,
+            },
+          },
+        },
+        pickers = {
+          find_files = {
+            hidden = true,
           },
         },
         extensions = {
@@ -165,6 +230,7 @@ require("lazy").setup({
             fuzzy = true,
             override_generic_sorter = true,
             override_file_sorter = true,
+            case_mode = "smart_case",
           },
         },
       })
@@ -687,7 +753,7 @@ require("lazy").setup({
   -- lazy.nvim Configuration
   -- =========================================================================
   install = {
-    colorscheme = { "tokyonight" },
+    colorscheme = { "github_dark" },
   },
   checker = {
     enabled = true,

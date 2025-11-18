@@ -7,7 +7,7 @@ local g = vim.g
 
 -- --- General Settings ---
 opt.number = true         -- Show line numbers
-opt.relativenumber = true -- Show relative line numbers
+opt.relativenumber = false -- Disable relative line numbers (use absolute line numbers)
 opt.mouse = 'a'           -- Enable mouse support
 opt.wrap = false          -- Disable line wrapping
 opt.scrolloff = 8         -- Keep 8 lines of context around the cursor

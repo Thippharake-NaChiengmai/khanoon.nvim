@@ -11,7 +11,7 @@
 
 ### 🎨 UI/UX
 
-- **Tokyo Night Theme** - Beautiful dark theme with multiple variants
+- **GitHub Theme** - Beautiful theme inspired by GitHub's VSCode themes with dark/light variants
 - **Lualine** - Elegant status line with git & LSP integration
 - **Bufferline** - VSCode-like buffer tabs
 - **Alpha Dashboard** - Custom startup screen with KHANOON branding
@@ -455,15 +455,14 @@ The KHANOON dashboard will appear on startup with quick access to common actions
 Edit `lua/core/theme.lua`:
 
 ```lua
--- Available styles: storm, night, day, moon
-vim.g.tokyonight_style = 'night'  -- Change to your preferred style
+-- Available GitHub theme variants:
+-- github_dark (default)
+-- github_dark_dimmed
+-- github_dark_high_contrast
+-- github_light
+-- github_light_high_contrast
+vim.cmd('colorscheme github_dark')  -- Change to your preferred variant
 ```
-
-Other popular themes you can add:
-
-- `catppuccin/nvim` - Catppuccin theme
-- `rose-pine/neovim` - Rose Pine theme
-- `EdenEast/nightfox.nvim` - Nightfox themes
 
 ### Add New LSP Server
 
@@ -711,7 +710,7 @@ This configuration is powered by 60+ carefully selected plugins:
 
 ### UI/UX
 
-- [tokyonight.nvim](https://github.com/folke/tokyonight.nvim) - Beautiful color scheme
+- [github-nvim-theme](https://github.com/projekt0n/github-nvim-theme) - GitHub-inspired color scheme
 - [lualine.nvim](https://github.com/nvim-lualine/lualine.nvim) - Status line
 - [bufferline.nvim](https://github.com/akinsho/bufferline.nvim) - Buffer tabs
 - [alpha-nvim](https://github.com/goolord/alpha-nvim) - Dashboard

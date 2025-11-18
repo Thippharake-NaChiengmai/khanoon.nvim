@@ -24,6 +24,7 @@
 - **Indent Guides** - Visual indentation lines for better code structure
 - **Colorizer** - Live color preview for hex/RGB/HSL color codes
 - **Inline Diagnostics** - Modern inline error/warning display
+- **Minimap** - Code overview minimap with CodeWindow and Satellite scrollbar
 
 ### 📁 File Management
 
@@ -440,6 +441,15 @@ The KHANOON dashboard will appear on startup with quick access to common actions
 | `u`                | Normal | Undo                                                    |
 | `<C-r>`            | Normal | Redo                                                    |
 
+### Minimap
+
+| Key          | Action         |
+| ------------ | -------------- |
+| `<leader>mo` | Toggle minimap |
+| `<leader>mm` | Focus minimap  |
+
+**Note:** Satellite scrollbar minimap is enabled by default and shows automatically on the right side.
+
 ### Navigation
 
 | Key     | Action                   |
@@ -757,6 +767,8 @@ This configuration is powered by 60+ carefully selected plugins:
 
 - [flash.nvim](https://github.com/folke/flash.nvim) - Fast cursor movement
 - [harpoon](https://github.com/ThePrimeagen/harpoon) - File bookmarks
+- [codewindow.nvim](https://github.com/gorbit99/codewindow.nvim) - Code overview minimap
+- [satellite.nvim](https://github.com/lewis6991/satellite.nvim) - Scrollbar minimap with git/diagnostic signs
 
 ### Editing
 

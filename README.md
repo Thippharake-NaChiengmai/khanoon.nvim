@@ -1,6 +1,6 @@
 # 🚀 KHANOON.nvim
 
-<img width="1889" height="977" alt="khanoon_nvim_img2" src="https://github.com/user-attachments/assets/3656fe82-6b3c-4e4b-b813-7c54dfe111ed" />
+<img width="1903" height="988" alt="khanoon_nvim_img3" src="https://github.com/user-attachments/assets/eb1b52ba-9cb8-4f10-af1a-2c827ba19d35" />
 
 > A modern, modular Neovim configuration optimized for Windows with full LSP support, debugging, and beautiful UI powered by Lazy.nvim.
 
@@ -8,79 +8,6 @@
 ![License](https://img.shields.io/badge/License-MIT-blue.svg)
 ![Platform](https://img.shields.io/badge/Platform-Windows-blue.svg)
 ![Plugins](https://img.shields.io/badge/Plugins-65+-orange.svg)
-
-## ✨ Features
-
-### 🎨 UI/UX
-
-- **Catppuccin Theme** - Beautiful pastel color scheme with 4 variants (Latte, Frappé, Macchiato, Mocha)
-- **Lualine** - Elegant status line with git & LSP integration
-- **Bufferline** - VSCode-like buffer tabs
-- **Alpha Dashboard** - Custom startup screen with KHANOON branding
-- **Which-key** - Interactive command palette & keybinding hints
-- **Noice.nvim** - Modern UI for messages, cmdline & popups
-- **Notify** - Beautiful notification popups
-- **Rainbow Brackets** - Colorful bracket pair highlighting (7 colors)
-- **Indent Guides** - Visual indentation lines for better code structure
-- **Colorizer** - Live color preview for hex/RGB/HSL color codes
-- **Inline Diagnostics** - Modern inline error/warning display
-- **Minimap** - Code overview minimap with CodeWindow and Satellite scrollbar
-
-### 📁 File Management
-
-- **Nvim-tree** - Fast file explorer with git integration
-- **Telescope** - Fuzzy finder for files, text, buffers & more
-- **Persistence** - Session management for save/restore workspaces
-- **Project.nvim** - Smart project detection and quick switching
-- **Spectre** - Advanced search and replace across files
-- **Auto-save** - Automatic file saving
-
-### 🎯 Code Intelligence
-
-- **LSP Support** - Full Language Server Protocol with Mason
-- **LSPSaga** - Enhanced LSP UI with better code actions & diagnostics
-- **Autocompletion** - nvim-cmp with LSP, buffer, path & snippet sources
-- **Treesitter** - Advanced syntax highlighting with Zig compiler (Windows compatible)
-- **Trouble** - Beautiful diagnostics & quickfix list
-- **Conform.nvim** - Modern auto-formatting with format-on-save
-- **Flash** - Lightning-fast cursor movement and navigation
-- **Harpoon** - Quick file bookmarking and switching
-
-### 🐛 Debugging
-
-- **nvim-dap** - Debug Adapter Protocol support
-- **DAP UI** - Interactive debugging interface
-- **DAP Virtual Text** - Inline variable values during debugging
-- **Mason DAP** - Automatic debugger installation for Python, Node.js & Chrome
-
-### 🔧 Git Integration
-
-- **Gitsigns** - Git status in signcolumn with inline blame
-- **Neogit** - Magit-style Git interface
-- **Diffview** - Cycle through diffs & review changes
-- **Git Blame** - Toggle git blame information
-
-### 💡 Smart Editing
-
-- **Auto-pairs** - Automatic bracket pairing
-- **Comment.nvim** - Smart commenting
-- **Surround** - Easily surround text with quotes, brackets, etc.
-- **Multi-cursor** - Multiple cursor editing (vim-visual-multi)
-- **Refactoring** - Advanced code refactoring tools
-- **Todo Comments** - Highlight & navigate TODO, FIXME, etc.
-
-### ⚡ Performance
-
-- **Lazy.nvim** - Fast plugin manager with lazy loading
-- **Optimized Startup** - Disabled unnecessary built-in plugins
-- **Async Execution** - Non-blocking plugin operations
-- **Large File Detection** - Auto-disable heavy features for large files
-
-### 📦 Structure
-
-- **Modular Design** - Clean organization in `/lua/core`
-- **65+ Plugins** - Carefully selected and configured
-- **Easy Customization** - Well-documented configuration files
 
 ## 📋 Prerequisites
 

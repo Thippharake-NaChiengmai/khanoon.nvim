@@ -523,6 +523,74 @@ require("lazy").setup({
   },
   
   -- =========================================================================
+  -- Session & Project Management
+  -- =========================================================================
+  
+  -- Session Management - Save and restore workspace sessions
+  {
+    "folke/persistence.nvim",
+    event = "BufReadPre",
+    opts = { 
+      options = vim.opt.sessionoptions:get(),
+    },
+    keys = {
+      { "<leader>qs", function() require("persistence").load() end, desc = "Restore Session" },
+      { "<leader>ql", function() require("persistence").load({ last = true }) end, desc = "Restore Last Session" },
+      { "<leader>qd", function() require("persistence").stop() end, desc = "Don't Save Current Session" },
+    },
+  },
+  
+  -- Project Management - Quick project switching
+  {
+    "ahmedkhalf/project.nvim",
+    event = "VeryLazy",
+    config = function()
+      require("project_nvim").setup({
+        detection_methods = { "pattern", "lsp" },
+        patterns = { ".git", "package.json", "Cargo.toml", "go.mod", "requirements.txt", ".vscode" },
+        show_hidden = false,
+        silent_chdir = true,
+        scope_chdir = 'global',
+      })
+      -- Load telescope extension
+      pcall(require('telescope').load_extension, 'projects')
+    end,
+    keys = {
+      { "<leader>fp", "<cmd>Telescope projects<cr>", desc = "Projects" },
+    },
+  },
+  
+  -- =========================================================================
+  -- Search & Replace
+  -- =========================================================================
+  
+  -- Advanced search and replace
+  {
+    "nvim-pack/nvim-spectre",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    keys = {
+      { "<leader>sr", function() require("spectre").open() end, desc = "Replace in Files (Spectre)" },
+      { "<leader>sw", function() require("spectre").open_visual({select_word=true}) end, desc = "Search Current Word" },
+      { "<leader>sf", function() require("spectre").open_file_search({select_word=true}) end, desc = "Search in Current File" },
+    },
+    config = function()
+      require('spectre').setup({
+        color_devicons = true,
+        open_cmd = 'vnew',
+        live_update = false,
+        line_sep_start = '┌-----------------------------------------',
+        result_padding = '¦  ',
+        line_sep       = '└-----------------------------------------',
+        highlight = {
+          ui = "String",
+          search = "DiffChange",
+          replace = "DiffDelete"
+        },
+      })
+    end,
+  },
+  
+  -- =========================================================================
   -- Git Integration
   -- =========================================================================
   {

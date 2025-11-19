@@ -42,6 +42,7 @@ require('plugins')
 -- =============================================================================
 local core_modules = {
   'core.keymaps',      -- Key mappings
+  'core.autocmds',     -- Autocommands
   'core.theme',        -- Colorscheme
   'core.alpha',        -- Dashboard
   'core.bufferline',   -- Buffer tabs

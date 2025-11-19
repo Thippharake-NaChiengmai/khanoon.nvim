@@ -7,7 +7,7 @@
 ![Neovim](https://img.shields.io/badge/Neovim-0.9+-green.svg)
 ![License](https://img.shields.io/badge/License-MIT-blue.svg)
 ![Platform](https://img.shields.io/badge/Platform-Windows-blue.svg)
-![Plugins](https://img.shields.io/badge/Plugins-60+-orange.svg)
+![Plugins](https://img.shields.io/badge/Plugins-65+-orange.svg)
 
 ## ✨ Features
 
@@ -30,6 +30,9 @@
 
 - **Nvim-tree** - Fast file explorer with git integration
 - **Telescope** - Fuzzy finder for files, text, buffers & more
+- **Persistence** - Session management for save/restore workspaces
+- **Project.nvim** - Smart project detection and quick switching
+- **Spectre** - Advanced search and replace across files
 - **Auto-save** - Automatic file saving
 
 ### 🎯 Code Intelligence
@@ -76,7 +79,7 @@
 ### 📦 Structure
 
 - **Modular Design** - Clean organization in `/lua/core`
-- **60+ Plugins** - Carefully selected and configured
+- **65+ Plugins** - Carefully selected and configured
 - **Easy Customization** - Well-documented configuration files
 
 ## 📋 Prerequisites
@@ -121,7 +124,7 @@ Or download and run the installer:
 - ✅ Installs Node.js for LSP servers
 - ✅ Downloads KHANOON.nvim configuration
 - ✅ Installs UbuntuMono Nerd Font
-- ✅ Installs all 60+ plugins automatically
+- ✅ Installs all 65+ plugins automatically
 
 **Time required:** 5-10 minutes ⏱
 
@@ -327,12 +330,29 @@ The KHANOON dashboard will appear on startup with quick access to common actions
 | `<leader>fb`       | Find buffers                     |
 | `<leader>fh`       | Find help tags                   |
 | `<leader>fo`       | Find recently opened files       |
+| `<leader>fp`       | Find projects (Project switcher) |
 | `<C-n>` / `<Down>` | Next item                        |
 | `<C-p>` / `<Up>`   | Previous item                    |
 | `<CR>`             | Open selected file               |
 | `<C-x>`            | Open in horizontal split         |
 | `<C-v>`            | Open in vertical split           |
 | `<C-t>`            | Open in new tab                  |
+
+### Session Management
+
+| Key          | Action                     |
+| ------------ | -------------------------- |
+| `<leader>qs` | Restore session            |
+| `<leader>ql` | Restore last session       |
+| `<leader>qd` | Don't save current session |
+
+### Search & Replace (Spectre)
+
+| Key          | Action                          |
+| ------------ | ------------------------------- |
+| `<leader>sr` | Open Spectre (search & replace) |
+| `<leader>sw` | Search current word             |
+| `<leader>sf` | Search in current file          |
 
 ### LSP (Code Intelligence)
 
@@ -713,7 +733,7 @@ MIT License - feel free to use and modify!
 
 ## 🙏 Acknowledgments
 
-This configuration is powered by 60+ carefully selected plugins:
+This configuration is powered by 65+ carefully selected plugins:
 
 ### Core Infrastructure
 
@@ -739,6 +759,9 @@ This configuration is powered by 60+ carefully selected plugins:
 
 - [nvim-tree.lua](https://github.com/nvim-tree/nvim-tree.lua) - File explorer
 - [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim) - Fuzzy finder
+- [persistence.nvim](https://github.com/folke/persistence.nvim) - Session management
+- [project.nvim](https://github.com/ahmedkhalf/project.nvim) - Project management
+- [nvim-spectre](https://github.com/nvim-pack/nvim-spectre) - Search and replace
 
 ### Code Intelligence
 

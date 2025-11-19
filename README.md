@@ -13,7 +13,7 @@
 
 ### 🎨 UI/UX
 
-- **GitHub Theme** - Beautiful theme inspired by GitHub's VSCode themes with dark/light variants
+- **Catppuccin Theme** - Beautiful pastel color scheme with 4 variants (Latte, Frappé, Macchiato, Mocha)
 - **Lualine** - Elegant status line with git & LSP integration
 - **Bufferline** - VSCode-like buffer tabs
 - **Alpha Dashboard** - Custom startup screen with KHANOON branding
@@ -487,13 +487,18 @@ The KHANOON dashboard will appear on startup with quick access to common actions
 Edit `lua/core/theme.lua`:
 
 ```lua
--- Available GitHub theme variants:
--- github_dark (default)
--- github_dark_dimmed
--- github_dark_high_contrast
--- github_light
--- github_light_high_contrast
-vim.cmd('colorscheme github_dark')  -- Change to your preferred variant
+-- Available Catppuccin flavours:
+-- latte (light)
+-- frappe (medium dark)
+-- macchiato (dark)
+-- mocha (darkest - default)
+flavour = "mocha"  -- Change to your preferred flavour
+
+-- Or switch themes in Neovim:
+:Catppuccin mocha
+:Catppuccin frappe
+:Catppuccin macchiato
+:Catppuccin latte
 ```
 
 ### Add New LSP Server
@@ -742,7 +747,7 @@ This configuration is powered by 65+ carefully selected plugins:
 
 ### UI/UX
 
-- [github-nvim-theme](https://github.com/projekt0n/github-nvim-theme) - GitHub-inspired color scheme
+- [catppuccin](https://github.com/catppuccin/nvim) - Soothing pastel theme with excellent plugin integration
 - [lualine.nvim](https://github.com/nvim-lualine/lualine.nvim) - Status line
 - [bufferline.nvim](https://github.com/akinsho/bufferline.nvim) - Buffer tabs
 - [alpha-nvim](https://github.com/goolord/alpha-nvim) - Dashboard

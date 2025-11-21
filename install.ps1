@@ -81,7 +81,7 @@ Write-Host "  • Neovim (latest stable version)" -ForegroundColor White
 Write-Host "  • KHANOON.nvim configuration" -ForegroundColor White
 Write-Host "  • Required tools (git, ripgrep, fd, fzf)" -ForegroundColor White
 Write-Host "  • Node.js (for LSP servers)" -ForegroundColor White
-Write-Host "  • UbuntuMono Nerd Font" -ForegroundColor White
+Write-Host "  • JetBrainsMono Nerd Font" -ForegroundColor White
 Write-Host "  • 60+ plugins (auto-configured)" -ForegroundColor White
 
 Write-Host "`nInstallation path: " -NoNewline -ForegroundColor Yellow
@@ -218,18 +218,18 @@ try {
     # ========================================================================
     # Step 7: Install JetBrainsMono Nerd Font
     # ========================================================================
-    Write-Step "Installing UbuntuMono Nerd Font..."
+    Write-Step "Installing JetBrainsMono Nerd Font...".."
     
-    $fontName = "UbuntuMonoNerdFont-Regular.ttf"
+    $fontName = "JetBrainsMonoNerdFont-Regular.ttf"
     $userFontsPath = "$env:LOCALAPPDATA\Microsoft\Windows\Fonts"
     $fontInstalled = Test-Path "$userFontsPath\$fontName"
     
     if (-not $fontInstalled) {
-        $fontUrl = "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.1.1/UbuntuMono.zip"
+        $fontUrl = "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.1.1/JetBrainsMono.zip"
         $fontZip = "$TempDir\font.zip"
         $fontDir = "$TempDir\font"
         
-        Write-Info "Downloading UbuntuMono Nerd Font (~10MB)..."
+        Write-Info "Downloading JetBrainsMono Nerd Font (~10MB)..."
         try {
             Invoke-WebRequest -Uri $fontUrl -OutFile $fontZip -UseBasicParsing
         } catch {
@@ -264,9 +264,9 @@ try {
             }
         }
         
-        Write-Info "⚠ IMPORTANT: Set your terminal font to 'UbuntuMono Nerd Font'"
+        Write-Info "⚠ IMPORTANT: Set your terminal font to 'JetBrainsMono Nerd Font'"
     } else {
-        Write-Success "UbuntuMono Nerd Font already installed"
+        Write-Success "JetBrainsMono Nerd Font already installed"
     }
     
     # ========================================================================
@@ -308,8 +308,8 @@ try {
     Write-Host "     • Open Windows Terminal settings (Ctrl + ,)" -ForegroundColor Gray
     Write-Host "     • Go to: Profiles → Defaults → Appearance" -ForegroundColor Gray
     Write-Host "     • Set Font face to: " -NoNewline -ForegroundColor Gray
-    Write-Host "UbuntuMono Nerd Font" -ForegroundColor Green
-    Write-Host "     • Font size: 13 or 14" -ForegroundColor Gray
+    Write-Host "JetBrainsMono Nerd Font" -ForegroundColor Green
+    Write-Host "     • Font size: 12 or 13" -ForegroundColor Gray
     Write-Host ""
     Write-Host "  2. " -NoNewline -ForegroundColor White
     Write-Host "Launch Neovim:" -ForegroundColor Yellow

@@ -98,7 +98,7 @@ Before installing KHANOON.nvim, ensure you have the following installed:
 
 - **ripgrep** (for Telescope live_grep)
 - **fd** (for faster file search)
-- **A Nerd Font** (for icons) - [Download here](https://www.nerdfonts.com/)
+- **JetBrainsMono Nerd Font** (for icons) - [Download here](https://www.nerdfonts.com/)
 
 ## 🔧 Installation
 
@@ -123,12 +123,12 @@ Or download and run the installer:
 - ✅ Installs all required tools (git, ripgrep, fd, fzf)
 - ✅ Installs Node.js for LSP servers
 - ✅ Downloads KHANOON.nvim configuration
-- ✅ Installs UbuntuMono Nerd Font
+- ✅ Installs JetBrainsMono Nerd Font
 - ✅ Installs all 65+ plugins automatically
 
 **Time required:** 5-10 minutes ⏱
 
-After installation, just set your terminal font to **UbuntuMono Nerd Font** and you're ready to go! 🎉
+After installation, just set your terminal font to **JetBrainsMono Nerd Font** and you're ready to go! 🎉
 
 ---
 
@@ -607,7 +607,7 @@ Ensure debug adapters are configured in `lua/core/dap.lua`.
 **Q: Icons not showing**
 
 1. Install a Nerd Font from [nerdfonts.com](https://www.nerdfonts.com/)
-2. Set the font in your terminal (e.g., "UbuntuMono Nerd Font")
+2. Set the font in your terminal (e.g., "JetBrainsMono Nerd Font")
 3. Restart terminal and Neovim
 
 **Q: Formatting not working**

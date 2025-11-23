@@ -8,9 +8,9 @@
 -- Git keymaps
 local keymap = vim.keymap.set
 
--- Git operations
-keymap('n', '<leader>gb', '<cmd>GitBlameToggle<cr>', { desc = "Toggle Git Blame" })
-keymap('n', '<leader>gB', '<cmd>GitBlame<cr>', { desc = "Show Git Blame" })
+-- Git blame using gitsigns
+keymap('n', '<leader>gb', '<cmd>Gitsigns toggle_current_line_blame<cr>', { desc = "Toggle Git Blame" })
+keymap('n', '<leader>gB', '<cmd>Gitsigns blame_line<cr>', { desc = "Show Git Blame" })
 
 -- Diffview shortcuts
 keymap('n', '<leader>gdo', '<cmd>DiffviewOpen<cr>', { desc = "Open Diff View" })

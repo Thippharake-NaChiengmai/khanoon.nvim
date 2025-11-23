@@ -789,7 +789,6 @@ This configuration is powered by 65+ carefully selected plugins:
 - [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim) - Git signs
 - [neogit](https://github.com/NeogitOrg/neogit) - Git interface
 - [diffview.nvim](https://github.com/sindrets/diffview.nvim) - Diff viewer
-- [git-blame.nvim](https://github.com/f-person/git-blame.nvim) - Git blame
 
 ### Navigation & Productivity
 

@@ -697,15 +697,6 @@ require("lazy").setup({
     },
   },
   
-  -- Git Blame
-  {
-    "f-person/git-blame.nvim",
-    event = "VeryLazy",
-    config = function()
-      vim.g.gitblame_enabled = 0
-    end,
-  },
-  
   -- =========================================================================
   -- Editing Support
   -- =========================================================================

@@ -200,6 +200,9 @@ require("lazy").setup({
     },
     config = function()
       require('nvim-tree').setup({
+        filters = {
+          git_ignored = true,
+        },
         actions = { open_file = { quit_on_open = true } },
         view = { width = 35 },
         renderer = {
@@ -325,7 +328,6 @@ require("lazy").setup({
     event = { "BufReadPost", "BufNewFile" },
     dependencies = {
       "nvim-treesitter/nvim-treesitter-textobjects",
-      "HiPhish/rainbow-delimiters.nvim",
     },
   },
   
@@ -334,12 +336,20 @@ require("lazy").setup({
     "HiPhish/rainbow-delimiters.nvim",
     event = { "BufReadPost", "BufNewFile" },
     config = function()
-      require('rainbow-delimiters.setup').setup({
+      local rainbow_delimiters = require('rainbow-delimiters')
+      
+      vim.g.rainbow_delimiters = {
         strategy = {
-          [''] = require('rainbow-delimiters').strategy['global'],
+          [''] = rainbow_delimiters.strategy['global'],
+          vim = rainbow_delimiters.strategy['local'],
         },
         query = {
           [''] = 'rainbow-delimiters',
+          lua = 'rainbow-blocks',
+        },
+        priority = {
+          [''] = 110,
+          lua = 210,
         },
         highlight = {
           'RainbowDelimiterRed',
@@ -350,7 +360,7 @@ require("lazy").setup({
           'RainbowDelimiterViolet',
           'RainbowDelimiterCyan',
         },
-      })
+      }
     end,
   },
   

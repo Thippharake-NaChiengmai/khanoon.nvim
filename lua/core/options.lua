@@ -1,33 +1,71 @@
 -- =============================================================================
--- Neovim Options Configuration
+-- Neovim Options — Minimal, Fast, IDE-Ready
 -- =============================================================================
 
 local opt = vim.opt
-local g = vim.g
 
--- --- General Settings ---
-opt.number = true         -- Show line numbers
-opt.relativenumber = false -- Disable relative line numbers (use absolute line numbers)
-opt.mouse = 'a'           -- Enable mouse support
-opt.wrap = false          -- Disable line wrapping
-opt.scrolloff = 8         -- Keep 8 lines of context around the cursor
-opt.clipboard = "unnamedplus" -- Use system clipboard
+-- --- Line Numbers ---
+opt.number = true              -- Show absolute line number on current line
+opt.relativenumber = true      -- Relative numbers for easy jumping (5j, 12k)
+opt.signcolumn = "yes"         -- Always show sign column (no layout shift)
+opt.cursorline = true          -- Highlight current line
 
 -- --- Indentation ---
-opt.tabstop = 2           -- Tab width of 2 spaces
-opt.shiftwidth = 2        -- Indent width of 2 spaces
-opt.expandtab = true      -- Use spaces instead of tabs
+opt.tabstop = 2                -- Tab = 2 spaces
+opt.shiftwidth = 2             -- Indent = 2 spaces
+opt.softtabstop = 2            -- Consistent feel
+opt.expandtab = true           -- Spaces instead of tabs
+opt.smartindent = true         -- Smart auto-indenting
+opt.shiftround = true          -- Round indent to multiple of shiftwidth
 
 -- --- Search ---
-opt.ignorecase = true     -- Ignore case in search
-opt.smartcase = true      -- But respect case if uppercase is used
+opt.ignorecase = true          -- Case-insensitive search
+opt.smartcase = true           -- ...unless uppercase is used
+opt.hlsearch = true            -- Highlight matches
+opt.incsearch = true           -- Incremental search
 
 -- --- Appearance ---
-opt.termguicolors = true  -- Enable 24-bit RGB colors
+opt.termguicolors = true       -- 24-bit RGB colors
+opt.wrap = false               -- No line wrapping
+opt.scrolloff = 8              -- Keep 8 lines visible above/below cursor
+opt.sidescrolloff = 8          -- Keep 8 columns visible left/right
+opt.showmode = false           -- Lualine shows mode instead
+opt.pumheight = 10             -- Max completion popup height
+opt.cmdheight = 1              -- Command line height
+opt.laststatus = 3             -- Global statusline
+opt.fillchars = {
+  eob = " ",                   -- Hide ~ on empty lines
+  fold = " ",
+  foldopen = "▾",
+  foldclose = "▸",
+  foldsep = " ",
+  diff = "╱",
+}
 
--- --- Leader Key ---
-g.mapleader = ' '         -- Set leader key to space
+-- --- Splits ---
+opt.splitright = true          -- Vertical splits open to the right
+opt.splitbelow = true          -- Horizontal splits open below
+opt.splitkeep = "screen"       -- Keep text on screen when splitting
 
--- --- Disable Netrw (for nvim-tree) ---
-g.loaded_netrw = 1
-g.loaded_netrwPlugin = 1
+-- --- Files & Undo ---
+opt.undofile = true            -- Persistent undo across sessions
+opt.undolevels = 10000         -- Maximum undo levels
+opt.swapfile = false           -- No swap files
+opt.backup = false             -- No backup files
+opt.writebackup = false        -- No write backup
+opt.updatetime = 200           -- Faster CursorHold events (default 4000ms)
+opt.timeoutlen = 300           -- Faster key sequence completion
+
+-- --- Clipboard ---
+opt.clipboard = "unnamedplus"  -- Use system clipboard
+
+-- --- Mouse ---
+opt.mouse = "a"               -- Full mouse support
+
+-- --- Completion ---
+opt.completeopt = "menu,menuone,noselect" -- Better completion experience
+opt.shortmess:append("cI")    -- Don't show completion messages, no intro
+
+-- --- Grep ---
+opt.grepprg = "rg --vimgrep"  -- Use ripgrep if available
+opt.grepformat = "%f:%l:%c:%m"

@@ -1,20 +1,63 @@
 --[[
-
-  KHANOON.nvim - Modern Neovim Configuration
-  Optimized for stability, performance, and productivity
-  
-  Features:
-  - Lazy.nvim for fast plugin management
-  - Full LSP support with Mason
-  - DAP debugging integration
-  - Git workflow automation
-  - Advanced UI/UX with floating windows
-  - Async job execution
-
+  KHANOON.nvim — Zero-Bloat Neovim IDE
+  Modular configuration with aggressive lazy-loading
 --]]
 
 -- =============================================================================
--- Bootstrap lazy.nvim Plugin Manager
+-- Disable Unused Built-in Plugins (shaves ~15-25ms off startup)
+-- =============================================================================
+local disabled_builtins = {
+  "netrw",
+  "netrwPlugin",
+  "netrwSettings",
+  "netrwFileHandlers",
+  "gzip",
+  "zip",
+  "zipPlugin",
+  "tar",
+  "tarPlugin",
+  "getscript",
+  "getscriptPlugin",
+  "vimball",
+  "vimballPlugin",
+  "2html_plugin",
+  "tohtml",
+  "logipat",
+  "rrhelper",
+  "spellfile_plugin",
+  "matchit",
+  "matchparen",
+  "tutor_mode_plugin",
+  "rplugin",
+  "man",
+  "editorconfig",
+}
+
+for _, plugin in ipairs(disabled_builtins) do
+  vim.g["loaded_" .. plugin] = 1
+end
+
+-- Disable providers we don't need
+vim.g.loaded_python3_provider = 0
+vim.g.loaded_ruby_provider = 0
+vim.g.loaded_perl_provider = 0
+vim.g.loaded_node_provider = 0
+
+-- =============================================================================
+-- Leader Key (must be set before lazy.nvim)
+-- =============================================================================
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
+
+-- =============================================================================
+-- Load Core Settings
+-- =============================================================================
+require("core.options")
+require("core.keymaps")
+require("core.autocmds")
+
+-- =============================================================================
+-- Bootstrap lazy.nvim
 -- =============================================================================
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
@@ -29,34 +72,34 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
--- Must load options before lazy.nvim
-require('core.options')
-
 -- =============================================================================
--- Load Plugins with lazy.nvim
+-- Load Plugins (auto-imports all files from lua/plugins/)
 -- =============================================================================
-require('plugins')
-
--- =============================================================================
--- Load Core Configurations
--- =============================================================================
-local core_modules = {
-  'core.keymaps',      -- Key mappings
-  'core.autocmds',     -- Autocommands
-  'core.theme',        -- Colorscheme
-  'core.alpha',        -- Dashboard
-  'core.bufferline',   -- Buffer tabs
-  'core.lualine',      -- Status line
-  'core.treesitter',   -- Syntax highlighting
-  'core.gitsigns',     -- Git integration
-  'core.lsp',          -- LSP & completion
-  'core.dap',          -- Debugging (DAP)
-  'core.git',          -- Advanced Git workflow
-}
-
-for _, module in ipairs(core_modules) do
-  local ok, err = pcall(require, module)
-  if not ok then
-    vim.notify('Error loading ' .. module .. '\n' .. err, vim.log.levels.ERROR)
-  end
-end
+require("lazy").setup("plugins", {
+  install = {
+    colorscheme = { "kanagawa", "habamax" },
+  },
+  checker = {
+    enabled = true,
+    notify = false,       -- Don't spam notifications about updates
+  },
+  change_detection = {
+    enabled = true,
+    notify = false,       -- Silent config reload
+  },
+  performance = {
+    cache = {
+      enabled = true,     -- Bytecode cache for faster startup
+    },
+    rtp = {
+      disabled_plugins = disabled_builtins,
+    },
+  },
+  rocks = {
+    enabled = false,      -- No luarocks dependency
+  },
+  ui = {
+    border = "rounded",
+    title = "  KHANOON.nvim ",
+  },
+})

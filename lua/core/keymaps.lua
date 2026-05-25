@@ -1,73 +1,83 @@
 -- =============================================================================
--- Keymaps Configuration
+-- Keymaps — Clean, Organized, Space Leader
 -- =============================================================================
 
-local keymap = vim.keymap.set
+local map = vim.keymap.set
 local opts = { noremap = true, silent = true }
 
--- --- File Explorer (NvimTree) ---
-keymap('n', '<leader>e', ':NvimTreeToggle<CR>', { desc = "Toggle File Explorer" })
+-- =============================================================================
+-- General
+-- =============================================================================
 
--- --- Commenting ---
-keymap('n', '<C-_>', ':CommentToggle<CR>', opts)
-keymap('v', '<C-_>', ":'<,'>CommentToggle<CR>", opts)
+-- Clear search highlight
+map("n", "<Esc>", "<cmd>nohlsearch<CR>", { desc = "Clear search highlight" })
 
--- --- Better window navigation ---
-keymap('n', '<C-h>', '<C-w>h', opts)
-keymap('n', '<C-j>', '<C-w>j', opts)
-keymap('n', '<C-k>', '<C-w>k', opts)
-keymap('n', '<C-l>', '<C-w>l', opts)
+-- Save file
+map("n", "<C-s>", "<cmd>w<CR>", { desc = "Save file" })
+map("i", "<C-s>", "<Esc><cmd>w<CR>", { desc = "Save file" })
 
--- --- Buffer navigation ---
-keymap('n', '<S-l>', ':bnext<CR>', opts)
-keymap('n', '<S-h>', ':bprevious<CR>', opts)
-keymap('n', '<leader>x', ':bdelete<CR>', { desc = "Close Buffer" })
+-- Quit
+map("n", "<leader>q", "<cmd>q<CR>", { desc = "Quit" })
+map("n", "<leader>Q", "<cmd>qa!<CR>", { desc = "Quit all (force)" })
 
--- --- Save and Quit ---
-keymap('n', '<leader>w', ':w<CR>', { desc = "Save File" })
-keymap('n', '<leader>q', ':q<CR>', { desc = "Quit" })
-keymap('n', '<leader>Q', ':qa!<CR>', { desc = "Quit All" })
+-- Better escape
+map("i", "jk", "<Esc>", opts)
+map("i", "kj", "<Esc>", opts)
 
--- --- Better paste ---
-keymap('v', 'p', '"_dP', opts)
+-- =============================================================================
+-- Navigation
+-- =============================================================================
 
--- --- Stay in indent mode ---
-keymap('v', '<', '<gv', opts)
-keymap('v', '>', '>gv', opts)
+-- Window navigation
+map("n", "<C-h>", "<C-w>h", { desc = "Move to left window" })
+map("n", "<C-j>", "<C-w>j", { desc = "Move to lower window" })
+map("n", "<C-k>", "<C-w>k", { desc = "Move to upper window" })
+map("n", "<C-l>", "<C-w>l", { desc = "Move to right window" })
 
--- --- Move text up and down ---
-keymap('v', '<A-j>', ':m .+1<CR>==', opts)
-keymap('v', '<A-k>', ':m .-2<CR>==', opts)
-keymap('x', 'J', ":move '>+1<CR>gv-gv", opts)
-keymap('x', 'K', ":move '<-2<CR>gv-gv", opts)
+-- Window resize
+map("n", "<C-Up>", "<cmd>resize +2<CR>", { desc = "Increase window height" })
+map("n", "<C-Down>", "<cmd>resize -2<CR>", { desc = "Decrease window height" })
+map("n", "<C-Left>", "<cmd>vertical resize -2<CR>", { desc = "Decrease window width" })
+map("n", "<C-Right>", "<cmd>vertical resize +2<CR>", { desc = "Increase window width" })
 
--- --- LSP Saga (if available) ---
-keymap('n', '<leader>ca', '<cmd>Lspsaga code_action<CR>', { desc = "Code Action" })
-keymap('n', 'K', '<cmd>Lspsaga hover_doc<CR>', { desc = "Hover Documentation" })
-keymap('n', '<leader>rn', '<cmd>Lspsaga rename<CR>', { desc = "Rename" })
-keymap('n', 'gd', '<cmd>Lspsaga goto_definition<CR>', { desc = "Go to Definition" })
-keymap('n', 'gD', '<cmd>Lspsaga peek_definition<CR>', { desc = "Peek Definition" })
-keymap('n', '<leader>o', '<cmd>Lspsaga outline<CR>', { desc = "Outline (LSP Active)" })
+-- Buffer navigation
+map("n", "<S-h>", "<cmd>bprevious<CR>", { desc = "Previous buffer" })
+map("n", "<S-l>", "<cmd>bnext<CR>", { desc = "Next buffer" })
+map("n", "<leader>x", "<cmd>bdelete<CR>", { desc = "Close buffer" })
 
--- --- Diagnostics ---
-keymap('n', '[d', '<cmd>Lspsaga diagnostic_jump_prev<CR>', { desc = "Previous Diagnostic" })
-keymap('n', ']d', '<cmd>Lspsaga diagnostic_jump_next<CR>', { desc = "Next Diagnostic" })
+-- =============================================================================
+-- Editing
+-- =============================================================================
 
--- --- Terminal ---
-keymap('n', '<C-\\>', '<cmd>ToggleTerm<CR>', { desc = "Toggle Terminal" })
-keymap('t', '<C-\\>', '<cmd>ToggleTerm<CR>', { desc = "Toggle Terminal" })
+-- Move lines in visual mode
+map("v", "J", ":move '>+1<CR>gv=gv", { desc = "Move selection down" })
+map("v", "K", ":move '<-2<CR>gv=gv", { desc = "Move selection up" })
 
--- --- Quick Fix ---
-keymap('n', '<leader>xx', '<cmd>Trouble diagnostics toggle<cr>', { desc = "Diagnostics (Trouble)" })
-keymap('n', '<leader>xX', '<cmd>Trouble diagnostics toggle filter.buf=0<cr>', { desc = "Buffer Diagnostics (Trouble)" })
+-- Stay in indent mode
+map("v", "<", "<gv", { desc = "Indent left" })
+map("v", ">", ">gv", { desc = "Indent right" })
 
--- --- Macro ---
-keymap('n', 'Q', 'q', { desc = "Start/Stop Recording Macro" })
-keymap('n', 'q', '<Nop>', opts)  -- Disable accidental macro recording
+-- Better paste (don't overwrite register)
+map("v", "p", '"_dP', opts)
 
--- --- Clear search highlight ---
-keymap('n', '<Esc>', ':nohlsearch<CR>', opts)
+-- Keep cursor centered on scroll/search
+map("n", "<C-d>", "<C-d>zz", opts)
+map("n", "<C-u>", "<C-u>zz", opts)
+map("n", "n", "nzzzv", opts)
+map("n", "N", "Nzzzv", opts)
 
--- --- Better jk ---
-keymap('i', 'jk', '<Esc>', opts)
-keymap('i', 'kj', '<Esc>', opts)
+-- Join lines without moving cursor
+map("n", "J", "mzJ`z", opts)
+
+-- =============================================================================
+-- Diagnostics
+-- =============================================================================
+map("n", "[d", vim.diagnostic.goto_prev, { desc = "Previous diagnostic" })
+map("n", "]d", vim.diagnostic.goto_next, { desc = "Next diagnostic" })
+map("n", "<leader>e", "", { desc = "File Explorer" })  -- placeholder, nvim-tree overrides
+
+-- =============================================================================
+-- Macros (remap to prevent accidental recording)
+-- =============================================================================
+map("n", "Q", "q", { desc = "Record macro" })
+map("n", "q", "<Nop>", opts)
